@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/api-gateway/api-gateway.iml" filepath="$PROJECT_DIR$/api-gateway/api-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bookms/bookms.iml" filepath="$PROJECT_DIR$/bookms/bookms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/edureka-ms-cert.iml" filepath="$PROJECT_DIR$/.idea/edureka-ms-cert.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/issuerms/issuerms.iml" filepath="$PROJECT_DIR$/issuerms/issuerms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oauth2/oauth2.iml" filepath="$PROJECT_DIR$/oauth2/oauth2.iml" />
+    </modules>
+  </component>
+</project>
