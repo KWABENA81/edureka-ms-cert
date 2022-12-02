@@ -7,27 +7,31 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 public class IssuerService implements IIssuerService {
 
-//    @Autowired
-//    private IssuerRepository issuerRepository;
-//
-//    public Collection<Issuer> findAll() {
-//        return issuerRepository.findAll().stream().collect(Collectors.toList());
-//    }
-//
+    //@Autowired
+    private IssuerRepository issuerRepository;
+
+    public Issuer issueBookToCustomer(Issuer issuer) {return null;
+    }
+
+
+    public Collection<Issuer> findAll() {
+        return issuerRepository.findAll();
+    }
+
 //    public List<Issuer> findByIsbn(String isbn) {
 //        return issuerRepository.findByIsbn(isbn);
 //    }
-//
-//    public List<Issuer> findByCustId(String custid) {
-//        return issuerRepository.findByCustId(custid);
-//    }
-//
+
+    public List<Issuer> findIssuerByCustomer(String custid) {
+        return null;//issuerRepository.findByCustId(custid);
+    }
+
+
 //    public Issuer save(Issuer issuer) {
 //        return issuerRepository.save(issuer);
 //    }

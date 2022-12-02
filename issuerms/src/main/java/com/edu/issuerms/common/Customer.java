@@ -5,12 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.Entity;
-
 @Data
 @Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 public class Customer {
+    private String phone;
+    private String email;
 }

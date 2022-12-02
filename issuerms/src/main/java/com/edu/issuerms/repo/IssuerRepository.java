@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-@Transactional
+//@Transactional
 public interface IssuerRepository extends JpaRepository<Issuer, Integer> {
 
     @Query("SELECT iss FROM Issuer iss WHERE iss.isbn=(:isbn)")
