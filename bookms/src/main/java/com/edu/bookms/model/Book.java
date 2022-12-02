@@ -3,13 +3,11 @@ package com.edu.bookms.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
-@Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -42,4 +40,5 @@ public class Book implements Comparable<Book> {
     public int compareTo(Book bk) {
         return this.isbn.compareTo(bk.isbn);
     }
+
 }

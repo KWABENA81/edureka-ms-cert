@@ -1,8 +1,10 @@
 package com.edu.bookms.api;
 
+
 import com.edu.bookms.common.Issuer;
 import com.edu.bookms.common.TransactionRequest;
 import com.edu.bookms.common.TransactionResponse;
+
 import com.edu.bookms.model.Book;
 import com.edu.bookms.service.BookService;
 import lombok.extern.slf4j.Slf4j;
@@ -36,11 +38,12 @@ public class BookResource {
         Book book = bookService.findByIsbn(isbn);
         if (book != null) {
             log.info("Book found with book isbn {}", isbn);
-            return ResponseEntity.ok(book);
+ return ResponseEntity.ok(book);
         }
         log.error("book not found with book id {}", book);
         return ResponseEntity.notFound().build();
     }
+
 
     //  Fetch Book
     @GetMapping("/findById/{id}")
@@ -90,6 +93,7 @@ public class BookResource {
             return bookService.save(book);
         }
     }
+
 
     @DeleteMapping("/deleteBookById/{id}")
     public ResponseEntity<Integer> deleteBookById(@PathVariable Integer id) {

@@ -1,5 +1,6 @@
 package com.edu.bookms.service;
 
+
 import com.edu.bookms.common.Issuer;
 import com.edu.bookms.common.TransactionRequest;
 import com.edu.bookms.common.TransactionResponse;
@@ -65,5 +66,20 @@ public class BookService implements IBookService {
                 ? "Issuer SUCCESFULL" : "FAILURE";
         bookRepository.save(book);
         return new TransactionResponse(book, issuerResponse.getIssuerId(), response);
+
+        // return booksRepository.findById(id);
     }
+
+    // public Book save(Book book) {
+    //     return booksRepository.save(book);
+    // }
+
+    // public Book findByIsbn(String isbn) {
+    //     return null;
+    // }
+
+    // public boolean delete(Integer id) {
+    //     return false;
+
+    // }
 }
