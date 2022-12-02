@@ -43,3 +43,7 @@ eureka:
   instance:
     preferIpAddress: true
 
+# Actuator endpoints for Circuit Breaker
+  #management:    health:      circuitbreakers:        enabled: true
+  #management.endpoints.web.exposure.include=health
+  #management.endpoint.health.show-details=always
