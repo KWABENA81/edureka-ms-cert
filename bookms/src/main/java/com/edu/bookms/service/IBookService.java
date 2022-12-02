@@ -1,11 +1,11 @@
 package com.edu.bookms.service;
 
-import com.edu.bookms.model.Book;
 
 import java.util.Collection;
-
+import com.edu.bookms.model.Book;
 
 public interface IBookService {
+
     Collection<Book> findAll();
 
     Book findById(Integer id);
