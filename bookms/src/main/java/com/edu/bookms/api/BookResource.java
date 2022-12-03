@@ -1,44 +1,50 @@
 package com.edu.bookms.api;
 
 
-import com.edu.bookms.common.Issuer;
 import com.edu.bookms.common.TransactionRequest;
 import com.edu.bookms.common.TransactionResponse;
-
 import com.edu.bookms.model.Book;
 import com.edu.bookms.service.BookService;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@RequestMapping("/book")
+@RequestMapping//(path="/books")
+@AllArgsConstructor
+@NoArgsConstructor
 public class BookResource {
 
     @Autowired
     private BookService bookService;
 
     //  Fetch Books
-    @GetMapping("/books")
-    public List<Book> getAllBooks() {
-        return bookService.findAll().stream().collect(Collectors.toList());
+    @GetMapping(path = "/books", produces = "application/json")
+    public ResponseEntity<List<Book>> getBooks() {
+        List<Book> books = bookService.findAll().stream().collect(Collectors.toList());
+        return ResponseEntity.ok(books);
     }
 
+    //    public ResponseEntity<List<Issuer>> issuers() {
+//
+//        List<Issuer> issuers = issuerService.findAll().stream().collect(Collectors.toList());
+//        return ResponseEntity.ok(issuers);
+//    }
     //  Fetch Book
-    @GetMapping("/findByIsbn/{isdn}")
-    public ResponseEntity<Book> findByIsbn(@PathVariable String isbn) {
+    @GetMapping("/fetchBook/{isdn}")
+    public ResponseEntity<Book> fetchBook(@PathVariable String isbn) {
         Book book = bookService.findByIsbn(isbn);
         if (book != null) {
             log.info("Book found with book isbn {}", isbn);
- return ResponseEntity.ok(book);
+            return ResponseEntity.ok(book);
         }
         log.error("book not found with book id {}", book);
         return ResponseEntity.notFound().build();
@@ -46,8 +52,8 @@ public class BookResource {
 
 
     //  Fetch Book
-    @GetMapping("/findById/{id}")
-    public ResponseEntity<Book> findById(@PathVariable Integer id) {
+    @GetMapping("/fetchBook/{id}")
+    public ResponseEntity<Book> fetchBook(@PathVariable Integer id) {
         Book book = bookService.findById(id);
         if (book != null) {
             log.info("Book found with book id {}", id);
@@ -71,14 +77,14 @@ public class BookResource {
 //    }
 
     //  Add Book
-    @PostMapping("/issueBook")
-    public TransactionResponse issueBook(@RequestBody TransactionRequest transactionRequest) {
+    @PostMapping("/addBook")
+    public TransactionResponse addBook(@RequestBody TransactionRequest transactionRequest) {
         return bookService.saveBook(transactionRequest);
     }
 
     //  Edit    , Update
-    @PutMapping("/book/{id}")
-    public Book updateBook(@RequestBody Book book, @PathVariable Integer id) {
+    @PutMapping("/editBook/{id}")
+    public Book editBook(@RequestBody Book book, @PathVariable Integer id) {
         Book book_db = bookService.findById(id);
         if (book_db != null) {
             book_db.setIsbn(book.getIsbn());
@@ -95,8 +101,8 @@ public class BookResource {
     }
 
 
-    @DeleteMapping("/deleteBookById/{id}")
-    public ResponseEntity<Integer> deleteBookById(@PathVariable Integer id) {
+    @DeleteMapping("/deleteBook/{id}")
+    public ResponseEntity<Integer> deleteBook(@PathVariable Integer id) {
         boolean isRemoved = bookService.delete(id);
         if (!isRemoved) {
             log.info("Book not found with id {}", id);

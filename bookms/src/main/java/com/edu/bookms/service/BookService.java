@@ -6,6 +6,8 @@ import com.edu.bookms.common.TransactionRequest;
 import com.edu.bookms.common.TransactionResponse;
 import com.edu.bookms.model.Book;
 import com.edu.bookms.repo.BookRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -14,6 +16,8 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
+@NoArgsConstructor
 public class BookService implements IBookService {
 
     @Autowired
