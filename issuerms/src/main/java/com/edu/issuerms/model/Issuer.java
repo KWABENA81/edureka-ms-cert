@@ -16,21 +16,23 @@ import javax.persistence.*;
 public class Issuer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "issuer_id")
+    private Integer issuerId;
 
-    @Column(name = "cust_id")
-    private int custId;
+    @Column(name = "customer_info", length = 30)
+    private String customerInfo;
 
     @Column(name = "isbn", nullable = false, length = 30)
     private String isbn;
-
-    @Column(name = "issuer_confirm", nullable = true, length = 50)
-    private String issuerConfirm;
-
-    @Column(name = "issuer_results", nullable = false, length = 15)
-    private String issuerResults;
-
     @Column(name = "no_of_copies")
     private Integer noOfCopies;
+
+    @Column(name = "issuer_status", length = 150)
+    private String issuerStatus;
+
+    @Column(name = "issuer_transaction_id", length = 150)
+    private String issuerTransactionId;
+
 }
+//( issuer_id, customer_info, isbn, no_of_copies, issuer_status, issuer_transaction_id)
+//( issuerId, customerInfo, isbn, noOfCopies, issuerStatus, issuerTransactionId)

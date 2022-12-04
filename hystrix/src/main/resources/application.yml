@@ -1,0 +1,21 @@
+
+server:
+  port: 9898
+
+spring:
+  application:
+    name: HYSTRIX-DASHBOARD
+
+
+# Actuator
+management:
+  endpoint:
+    service-registry:
+      cache:
+        time-to-live: 5000
+    hystrix:
+      stream:
+        enabled: true
+hystrix:
+  dashboard:
+    proxyStreamAllowList: hystrix.stream

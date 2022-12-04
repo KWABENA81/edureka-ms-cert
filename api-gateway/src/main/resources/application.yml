@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: api-gateway
+    name: API-GATEWAY
 
   cloud:
     gateway:
@@ -12,19 +12,29 @@ spring:
         lowerCaseServiceId: true
       # http://localhost:8080/dummy-bookms/books -> http://localhost:8081/books
       routes:
-        - id: bookms
+        - id: BOOKMS
           uri: lb://BOOKMS
           predicates:
-            - Path= /dummy-bookms/**
+            - Path=/book/**       # /dummy-bookms/**
           filters:
             - RewritePath= /dummy-bookms/(?<path>.*), /$\{path}
+            - name: CircuitBreaker
+              args:
+                name: book-microservice
+                fallbackuri: forward:/bookFallBack
+#
 
         - id: issuerms
           uri: lb://ISSUERMS
           predicates:
-            - Path= /dummy-issuerms/**
+            - Path=/issuer/**     # /dummy-issuerms/**
           filters:
             - RewritePath= /dummy-issuerms/(?<path>.*), /$\{path}
+            - name: CircuitBreaker
+              args:
+                name: issuer-microservice
+                fallbackuri: forward:/issuerFallBack
+
 
 eureka:
   client:
@@ -36,6 +46,15 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: hystrix.stream
+
+
+hystrix:
+  command:
+    fallback:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
 
 

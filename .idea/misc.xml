@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/issuerms/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
         <option value="$PROJECT_DIR$/bookms/pom.xml" />
+        <option value="$PROJECT_DIR$/hystrix/pom.xml" />
       </list>
     </option>
   </component>

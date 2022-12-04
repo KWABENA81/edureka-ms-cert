@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
         <module name="issuerms" />
+        <module name="hystrix" />
         <module name="bookms" />
         <module name="oauth2" />
         <module name="eureka-server" />
@@ -18,6 +19,8 @@
       <module name="api-gateway" target="11" />
       <module name="bookms" target="11" />
       <module name="eureka-server" target="11" />
+      <module name="hystrix" target="11" />
+      <module name="hystrix-dashboard" target="11" />
       <module name="issuerms" target="11" />
       <module name="oauth2" target="11" />
     </bytecodeTargetLevel>
@@ -27,6 +30,8 @@
       <module name="api-gateway" options="-parameters" />
       <module name="bookms" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
+      <module name="hystrix" options="-parameters" />
+      <module name="hystrix-dashboard" options="" />
       <module name="issuerms" options="-parameters" />
       <module name="oauth2" options="-parameters" />
     </option>

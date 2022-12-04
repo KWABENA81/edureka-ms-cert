@@ -9,18 +9,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
 @NoArgsConstructor
 public class IssuerService implements IIssuerService {
 
-     @Autowired
+    @Autowired
     private IssuerRepository issuerRepository;
-
-    public Issuer issueBookToCustomer(Issuer issuer) {
-        return null;
-    }
 
 
     public Collection<Issuer> findAll() {
@@ -51,13 +49,31 @@ public class IssuerService implements IIssuerService {
         return null;//issuerRepository.findByCustId(custid);
     }
 
+    public String customerBookIssuing() {
+        return new Random().nextBoolean() ? "SUCCESS" : "FAILURE";
+    }
+
+    public Issuer issueBook(Issuer issuer) {
+        issuer.setIssuerStatus(customerBookIssuing());
+        issuer.setIssuerTransactionId(UUID.randomUUID().toString().replace("-", "").toUpperCase());
+        issuer.setCustomerInfo("4164587787");
+        issuer.setIsbn("DEFAULT");
+        issuer.setNoOfCopies(102);
+        return issuerRepository.save(issuer);
+    }
+
+    public Issuer findIssuerByBookIsbn(String bookIsbn) {
+        List<Issuer> list = issuerRepository.findIssuerByBookIsbn(bookIsbn);
+        return (!list.isEmpty()) ? list.stream().findFirst().get() :
+                new Issuer(999, "nul", "nul", 0, "nul", "nul");
+    }
 
 //    public Issuer save(Issuer issuer) {
 //        return issuerRepository.save(issuer);
 //    }
 //
 //    public Issuer doBookIssuer(Issuer issuer) {
-//        issuer.setIssuerConfirm(UUID.randomUUID().toString().replace("-", "").toUpperCase());
+//        issuer.setIssuerStatus(UUID.randomUUID().toString().replace("-", "").toUpperCase());
 //        return issuerRepository.save(issuer);
 //    }
 }

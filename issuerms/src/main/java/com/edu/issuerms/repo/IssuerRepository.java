@@ -17,6 +17,6 @@ public interface IssuerRepository extends JpaRepository<Issuer, Integer> {
     @Query("SELECT iss FROM Issuer iss WHERE iss.isbn=(:isbn)")
     List<Issuer> findByIsbn(@Param("isbn") String isbn);
 
-//    @Query("SELECT iss FROM Issuer iss WHERE iss.custId=(:custid)")
-//    List<Issuer> findByCustId(String custid);
+    @Query("SELECT iss FROM Issuer iss WHERE iss.isbn=(:isbn)")
+    List<Issuer> findIssuerByBookIsbn(@Param("isbn") String isbn);
 }
