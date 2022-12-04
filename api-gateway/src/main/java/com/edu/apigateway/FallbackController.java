@@ -1,0 +1,19 @@
+package com.edu.apigateway;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
+
+@RestController
+public class FallbackController {
+
+    @RequestMapping("/bookFallBack")
+    public Mono<String> bookMicroServiceFallBack() {
+        return Mono.just("Book Service is taking too long to respond.  Please try again later.");
+    }
+
+    @RequestMapping("/issuerFallBack")
+    public Mono<String> issuerMicroServiceFallBack() {
+        return Mono.just("Issuer Service is taking too long to respond.  Please try again later.");
+    }
+}

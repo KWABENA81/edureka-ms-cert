@@ -8,19 +8,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@RequestMapping//("/issuer")
+@RequestMapping("/issuer")
 public class IssuerResource {
     @Autowired
     private IssuerService issuerService;
 
     //  Fetch all issers
-    @GetMapping(path="/issuers",produces="application/json")//("/issuers")
+    @GetMapping(path = "/issuers", produces = "application/json")//("/issuers")
     public ResponseEntity<List<Issuer>> issuers() {
-
         List<Issuer> issuers = issuerService.findAll().stream().collect(Collectors.toList());
         return ResponseEntity.ok(issuers);
     }
@@ -38,13 +38,15 @@ public class IssuerResource {
     }
 
     //  Issue Book to IssuerCustomer
-//    @PostMapping("/issueBookToCustomer")
-//    public Issuer issueBookToCustomer(@RequestBody Issuer issuer) {
-//            throws URISyntaxException {
-//        Issuer saved = issuerService.save(issuer);
-//        return ResponseEntity.created(new URI(saved.getId().toString())).body(saved);
-//        return issuerService.issueBookToCustomer(issuer);
-//    }
+    @PostMapping("/issueBook")
+    public Issuer issueBook(@RequestBody Issuer issuer) {
+        return issuerService.issueBook(issuer);
+    }
+
+    @GetMapping("/issuerBook")
+    public Issuer findIssuerByBookIsbn(@PathVariable String bookIsbn){
+        return issuerService.findIssuerByBookIsbn(bookIsbn);
+    }
 
 //    @PutMapping("")
 //    @PutMapping("/book/{id}")

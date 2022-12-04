@@ -7,4 +7,4 @@ spring:
 #      enabled: true
 #
   application:
-    name: oauth2
+    name: OAUTH2

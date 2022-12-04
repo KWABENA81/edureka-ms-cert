@@ -10,15 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Issuer {
-
-    private Integer id;
-
-    private int custId;
-
+    private Integer issuerId;
+    private String customerInfo;
     private String isbn;
-    private String issuerId;
-
-    private String issuerConfirm;
-
     private Integer noOfCopies;
+    private String issuerStatus;
+    private String issuerTransactionId;
 }
+//( issuerId, customerInfo, isbn, noOfCopies, issuerStatus, issuerTransactionId)

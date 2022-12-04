@@ -59,19 +59,19 @@ public class BookService implements IBookService {
     }
 
     public TransactionResponse saveBook(TransactionRequest request) {
-        String response = "";
         Book book = request.getBook();
         Issuer issuer = request.getIssuer();
         issuer.setIsbn(book.getIsbn());
+        issuer.setNoOfCopies(book.getIssuedCopies());
 
         Issuer issuerResponse = restTemplate
-                .postForObject("http://ISSUER-MS/issuer/doBookIssuer/", issuer, Issuer.class);
-        response = (issuerResponse.getIssuerConfirm().equalsIgnoreCase("SUCCESS"))
-                ? "Issuer SUCCESFULL" : "FAILURE";
-        bookRepository.save(book);
-        return new TransactionResponse(book, issuerResponse.getIssuerId(), response);
+                .postForObject("http://ISSUERMS/issuer/issueBook/", issuer, Issuer.class);
+        String message = (issuerResponse.getIssuerStatus().equalsIgnoreCase("SUCCESS"))
+                ? "Issuer SUCCESSFULL" : "Invalid entry, FAILURE";
 
-        // return booksRepository.findById(id);
+        bookRepository.save(book);
+        return new TransactionResponse(book, issuerResponse.getCustomerInfo(),
+                issuerResponse.getIssuerStatus(), issuerResponse.getIssuerTransactionId(), message);
     }
 
     // public Book save(Book book) {

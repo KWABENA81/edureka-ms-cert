@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@RequestMapping//(path="/books")
+@RequestMapping(path="/book")
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookResource {
@@ -78,7 +78,7 @@ public class BookResource {
 
     //  Add Book
     @PostMapping("/addBook")
-    public TransactionResponse addBook(@RequestBody TransactionRequest transactionRequest) {
+    public TransactionResponse issueBook(@RequestBody TransactionRequest transactionRequest) {
         return bookService.saveBook(transactionRequest);
     }
 
