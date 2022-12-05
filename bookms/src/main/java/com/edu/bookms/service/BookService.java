@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,16 +32,13 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public Book findById(Integer id) {
-        Optional<Book> optionalBook = bookRepository.findById(id);
-        return (optionalBook.isPresent()) ? optionalBook.get() : optionalBook.orElseThrow();
+    public Optional<Book> findById(Integer id) {
+        return bookRepository.findById(id);
     }
 
     @Override
-    public Book findByIsbn(String isbn) {
-//        Optional<Book> optionalBook = booksRepository.findByIsbn(isbn);
-//        return (optionalBook.isPresent()) ? optionalBook.get() : optionalBook.orElseThrow();
-        return new Book();
+    public Optional<Book> findByIsbn(String isbn) {
+        return bookRepository.findByIsbn(isbn);
     }
 
     @Override

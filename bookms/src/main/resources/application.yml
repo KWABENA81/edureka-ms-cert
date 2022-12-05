@@ -44,6 +44,15 @@ eureka:
     #preferIpAddress: true
     hostname: localhost
 
+
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 # Actuator endpoints for Circuit Breaker
   #management:    health:      circuitbreakers:        enabled: true
   #management.endpoints.web.exposure.include=health

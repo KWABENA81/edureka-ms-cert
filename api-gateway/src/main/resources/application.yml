@@ -1,5 +1,5 @@
 server:
-  port: 8093
+  port: 9797
 
 spring:
   application:
@@ -17,19 +17,18 @@ spring:
           predicates:
             - Path=/book/**       # /dummy-bookms/**
           filters:
-            - RewritePath= /dummy-bookms/(?<path>.*), /$\{path}
+            #- RewritePath= /dummy-bookms/(?<path>.*), /$\{path}
             - name: CircuitBreaker
               args:
                 name: book-microservice
                 fallbackuri: forward:/bookFallBack
-#
 
         - id: issuerms
           uri: lb://ISSUERMS
           predicates:
             - Path=/issuer/**     # /dummy-issuerms/**
           filters:
-            - RewritePath= /dummy-issuerms/(?<path>.*), /$\{path}
+            #- RewritePath= /dummy-issuerms/(?<path>.*), /$\{path}
             - name: CircuitBreaker
               args:
                 name: issuer-microservice
@@ -41,13 +40,12 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
 
-# Actuator
+#
 management:
   endpoints:
     web:
       exposure:
-        include: hystrix.stream
-
+        include: hystrix.stream, info, health
 
 hystrix:
   command:
