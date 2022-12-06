@@ -23,13 +23,19 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
+
     show-sql: true
     open-in-view: true
     properties:
       hibernate:
         format_sql: true
 
+#  security:
+#    enabled: false
+##spring:
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
 
 eureka:
   client:
@@ -44,23 +50,27 @@ eureka:
     #preferIpAddress: true
     hostname: localhost
 
-
-
-
-
 management:
+#  security:
+#    enabled: false
   endpoints:
     web:
       exposure:
         include: "*"
+
 # Actuator endpoints for Circuit Breaker
   #management:    health:      circuitbreakers:        enabled: true
   #management.endpoints.web.exposure.include=health
   #management.endpoint.health.show-details=always
 
-    # Security enable/disable
-#  security:
-#      basic:
-#        enabled: false
-security:
-  ignored: /**
+# Security enable/disable
+#security:
+#  ignored: /**
+#  basic:
+#    enabled: false
+
+  ####
+logging:
+  file:
+    #name: '/var/log/app.log'
+    path: /home/sask/home/Documents/tmp/log

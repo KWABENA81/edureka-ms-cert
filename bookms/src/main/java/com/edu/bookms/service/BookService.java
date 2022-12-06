@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+ @Service
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookService implements IBookService {
@@ -72,16 +72,4 @@ public class BookService implements IBookService {
                 issuerResponse.getIssuerStatus(), issuerResponse.getIssuerTransactionId(), message);
     }
 
-    // public Book save(Book book) {
-    //     return booksRepository.save(book);
-    // }
-
-    // public Book findByIsbn(String isbn) {
-    //     return null;
-    // }
-
-    // public boolean delete(Integer id) {
-    //     return false;
-
-    // }
 }

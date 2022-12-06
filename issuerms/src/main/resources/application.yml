@@ -30,6 +30,13 @@ spring:
       hibernate:
         format_sql: true
 
+#  security:
+#    enabled: false
+#  #spring:
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+
+
 eureka:
   client:
     register-with-eureka: true
@@ -44,8 +51,10 @@ eureka:
     hostname: localhost
 
 
-
-
+logging:
+  file: #issuer.log
+    #name: '/var/log/app.log'
+    path: /home/sask/home/Documents/tmp/log
 
 
 management:
