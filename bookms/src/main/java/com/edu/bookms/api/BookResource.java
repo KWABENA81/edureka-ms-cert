@@ -14,96 +14,76 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@RequestMapping(path="/book")
 @AllArgsConstructor
 @NoArgsConstructor
+@RequestMapping(path = "/api")
 public class BookResource {
 
     @Autowired
     private BookService bookService;
 
     //  Fetch Books
-    @GetMapping(path = "/books", produces = "application/json")
-    public ResponseEntity<List<Book>> getBooks() {
+    @GetMapping(path = "/books")
+    public ResponseEntity<List<Book>> books() {
+        log.info("Start All Books retrieval");
         List<Book> books = bookService.findAll().stream().collect(Collectors.toList());
         return ResponseEntity.ok(books);
     }
 
-    //    public ResponseEntity<List<Issuer>> issuers() {
-//
-//        List<Issuer> issuers = issuerService.findAll().stream().collect(Collectors.toList());
-//        return ResponseEntity.ok(issuers);
-//    }
-    //  Fetch Book
-    @GetMapping("/fetchBook/{isdn}")
-    public ResponseEntity<Book> fetchBook(@PathVariable String isbn) {
-        Book book = bookService.findByIsbn(isbn);
-        if (book != null) {
-            log.info("Book found with book isbn {}", isbn);
-            return ResponseEntity.ok(book);
+
+    //  Fetch Book by id
+    @GetMapping("/book/{id}")
+    public ResponseEntity<Book> booksById(@PathVariable(value = "id") Integer id) {
+        Optional<Book> bookOptional = bookService.findById(id);
+        if (bookOptional.isPresent()) {
+            log.info(" Books findById OK");
+            return ResponseEntity.ok().body(bookOptional.get());
+        } else {
+            log.info("Start findById Books failed");
+            return ResponseEntity.notFound().build();
         }
-        log.error("book not found with book id {}", book);
-        return ResponseEntity.notFound().build();
     }
 
-
-    //  Fetch Book
-    @GetMapping("/fetchBook/{id}")
-    public ResponseEntity<Book> fetchBook(@PathVariable Integer id) {
-        Book book = bookService.findById(id);
-        if (book != null) {
-            log.info("Book found with book id {}", id);
-            return ResponseEntity.ok(book);
-        }
-        log.error("book not found with book id {}", book);
-        return ResponseEntity.notFound().build();
-    }
-
-//    //  Add Book
-//    @PostMapping("/createBook")
-//    public ResponseEntity<Book> createBook(@RequestBody TransactionRequest transactionRequest)
-//            throws URISyntaxException {
-//        Book book = transactionRequest.getBook();
-//        Issuer issuer = transactionRequest.getIssuer();
-//        issuer.setIsbn(book.getIsbn());
-//
-//        Book bookSaved = bookService.save(book);
-//        //  send rest call to issuer with isbn, & ...
-//        return ResponseEntity.created(new URI(bookSaved.getId().toString())).body(bookSaved);
-//    }
 
     //  Add Book
-    @PostMapping("/addBook")
+    @PostMapping("/add")
     public TransactionResponse issueBook(@RequestBody TransactionRequest transactionRequest) {
         return bookService.saveBook(transactionRequest);
     }
 
-    //  Edit    , Update
-    @PutMapping("/editBook/{id}")
-    public Book editBook(@RequestBody Book book, @PathVariable Integer id) {
-        Book book_db = bookService.findById(id);
-        if (book_db != null) {
-            book_db.setIsbn(book.getIsbn());
-            book_db.setTitle(book.getTitle());
-            book_db.setAuthor(book.getAuthor());
-            book_db.setIssuedCopies(book.getIssuedCopies());
-            book_db.setPublishedDate(book.getPublishedDate());
+    //  Edit, Update
+    @PutMapping("/edit/{id}")
+    public Book editBook(@RequestBody Book nbook, @PathVariable(value = "id") Integer id) {
+        return bookService.findById(id)
+                .map(bk -> {
+                    bk.setIsbn(nbook.getIsbn());
+                    bk.setTitle(nbook.getTitle());
+                    bk.setAuthor(nbook.getAuthor());
+                    bk.setTotalCopies(nbook.getTotalCopies());
+                    bk.setIssuedCopies(nbook.getIssuedCopies());
+                    bk.setPublishedDate(nbook.getPublishedDate());
 
-            return bookService.save(book_db);
-        } else {
-            book.setId(id);
-            return bookService.save(book);
-        }
+                    return bookService.save(bk);
+                })
+                .orElseGet(() -> {
+                            nbook.setId(id);
+                            bookService.save(nbook);
+                            return bookService.save(nbook);
+                        }
+                );
     }
 
 
-    @DeleteMapping("/deleteBook/{id}")
-    public ResponseEntity<Integer> deleteBook(@PathVariable Integer id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Integer> deleteBook(@PathVariable(value = "id") Integer id) {
+        log.info("Book not found with id {}", id);
         boolean isRemoved = bookService.delete(id);
+        log.info("Book not found with id {}", isRemoved);
         if (!isRemoved) {
             log.info("Book not found with id {}", id);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -112,3 +92,4 @@ public class BookResource {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }
+

@@ -4,51 +4,61 @@ import com.edu.issuerms.model.Issuer;
 import com.edu.issuerms.service.IssuerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Random;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@RequestMapping("/issuer")
+@RequestMapping("/api")
 public class IssuerResource {
     @Autowired
     private IssuerService issuerService;
 
     //  Fetch all issers
-    @GetMapping(path = "/issuers", produces = "application/json")//("/issuers")
+    @GetMapping(path = "/issuers") //  @RequestMapping(value = "/employees", produces = "application/json")
     public ResponseEntity<List<Issuer>> issuers() {
+        log.info("Start All Issuers retrieval");
         List<Issuer> issuers = issuerService.findAll().stream().collect(Collectors.toList());
         return ResponseEntity.ok(issuers);
     }
 
-    //  Fetch Issuer by isbn / bookid
-    @GetMapping("/issuers/{isbn}")
-    public Issuer fetchIssuer(@PathVariable String isbn) {
-        return issuerService.findByIsbn(isbn);
+    //  Fetch Book by id
+    @GetMapping(path="/issuer/{id}")
+    public ResponseEntity<Issuer> issuerById(@PathVariable(value = "id") Integer id) {
+        Optional<Issuer> issuerOptional = issuerService.findById(id);
+        if (issuerOptional.isPresent()) {
+            log.info(" Issuer findById OK");
+            return ResponseEntity.ok().body(issuerOptional.get());
+        } else {
+            log.info("Start findById Issuer failed");
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    //  Fetch Issuer by custId
-    @GetMapping("/issuers/{custid}")
-    public List<Issuer> findIssuerByCustomer(@PathVariable String custid) {
-        return issuerService.findIssuerByCustomer(custid);
-    }
 
     //  Issue Book to IssuerCustomer
-    @PostMapping("/issueBook")
-    public Issuer issueBook(@RequestBody Issuer issuer) {
+    @PostMapping(path="/add")
+    public Issuer addIssuer(@RequestBody Issuer issuer) {
         return issuerService.issueBook(issuer);
     }
 
-    @GetMapping("/issuerBook")
-    public Issuer findIssuerByBookIsbn(@PathVariable String bookIsbn){
-        return issuerService.findIssuerByBookIsbn(bookIsbn);
+    @DeleteMapping(path="/cancel/{id}")
+    //@RequestMapping(value ="/cancel/{id}" , method = RequestMethod.DELETE)
+    public ResponseEntity<Integer> cancelIssue(@PathVariable(value = "id") Integer id) {
+        log.info("Issuer with #id {} has cancelIssuer", id);
+        boolean isRemoved = issuerService.delete(id);
+        if (!isRemoved) {
+            log.info("Issuer not found with id {}", id);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        log.info("Issuer with #id {} has been deleted", id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-//    @PutMapping("")
-//    @PutMapping("/book/{id}")
-//    public Book updateBook(@RequestBody Book book, @PathVariable Integer id) {
 }
+
