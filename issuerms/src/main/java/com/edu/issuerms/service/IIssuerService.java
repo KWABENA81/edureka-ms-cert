@@ -8,10 +8,10 @@ import java.util.Optional;
 public interface IIssuerService {
     Collection<Issuer> findAll();
 
-    Optional<Issuer> findById(Integer id);
+    Optional<Issuer> findById(Long id);
 
     Issuer findByIsbn(String isbn);
 
-    boolean delete(Integer id);
+    boolean delete(Long id);
 
 }

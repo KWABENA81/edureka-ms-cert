@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,8 +29,8 @@ public class IssuerResource {
     }
 
     //  Fetch Book by id
-    @GetMapping(path="/issuer/{id}")
-    public ResponseEntity<Issuer> issuerById(@PathVariable(value = "id") Integer id) {
+    @GetMapping(path = "/issuer/{id}")
+    public ResponseEntity<Issuer> issuerById(@PathVariable(value = "id") Long id) {
         Optional<Issuer> issuerOptional = issuerService.findById(id);
         if (issuerOptional.isPresent()) {
             log.info(" Issuer findById OK");
@@ -42,22 +43,21 @@ public class IssuerResource {
 
 
     //  Issue Book to IssuerCustomer
-    @PostMapping(path="/add")
+    @PostMapping(path = "/add")
     public Issuer addIssuer(@RequestBody Issuer issuer) {
         return issuerService.issueBook(issuer);
     }
 
-    @DeleteMapping(path="/cancel/{id}")
+    @DeleteMapping(path = "/cancel/{id}")
     //@RequestMapping(value ="/cancel/{id}" , method = RequestMethod.DELETE)
-    public ResponseEntity<Integer> cancelIssue(@PathVariable(value = "id") Integer id) {
+    public void cancelIssue(@PathVariable(value = "id") Long id) {
         log.info("Issuer with #id {} has cancelIssuer", id);
         boolean isRemoved = issuerService.delete(id);
         if (!isRemoved) {
             log.info("Issuer not found with id {}", id);
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        log.info("Issuer with #id {} has been deleted", id);
-        return new ResponseEntity<>(id, HttpStatus.OK);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } else
+            log.info("Issuer with #id {} has been deleted", id);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.edu.issuerms.api.exception;
 
 public class IssuerNotFoundException extends RuntimeException {
-    public IssuerNotFoundException(Integer id) {
+    public IssuerNotFoundException(Long id) {
         super("Could not find book " + id);
     }
 

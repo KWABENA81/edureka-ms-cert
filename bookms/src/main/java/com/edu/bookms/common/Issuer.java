@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Issuer {
-    private Integer issuerId;
+    private Long issuerId;
     private String customerInfo;
     private String isbn;
     private Integer noOfCopies;

@@ -10,9 +10,9 @@ public interface IBookService {
 
     Collection<Book> findAll();
 
-    Optional<Book> findById(Integer id);
+    Optional<Book> findById(Long id);
 
     Optional<Book> findByIsbn(String isbn);
 
-    void delete(Integer id);
+    void delete(Long id);
 }

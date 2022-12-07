@@ -1,0 +1,25 @@
+#	DELETE BOOK
+(async function deleteBook(id) {
+		await fetch('http://localhost:8097/api/delete/'+id, 
+		{ method:  "DELETE" }
+		)
+	}
+)("1");
+		
+		
+#	POST BOOK
+(async function issueBook() {
+		let book = { "id":"5", "isbn":"ajsuhnfkd", "title":"Rest Posting",
+					"author":"John", "publish_date":"2022-12-12",
+					"issued_copies":"123", "total_copies":"23"
+					}
+			await fetch('http://localhost:8097/api/add/', {
+			method:  "POST",
+			headers:  {
+				Accept: 'application/json', 'Content-Type': 'application/json', 
+				},
+				body: JSON.stringify(book)}).
+				then( result => result.text()).
+				then( text => alert(text)); 
+			})();
+		

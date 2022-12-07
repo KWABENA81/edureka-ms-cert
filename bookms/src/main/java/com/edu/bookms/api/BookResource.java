@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +37,7 @@ public class BookResource {
 
     // Fetch Book by id
     @GetMapping("/book/{id}")
-    public ResponseEntity<Book> booksById(@PathVariable(value = "id") Integer id) {
+    public ResponseEntity<Book> booksById(@PathVariable(value = "id") Long id) {
         Optional<Book> bookOptional = bookService.findById(id);
         if (bookOptional.isPresent()) {
             log.info(" Books findById OK");
@@ -55,7 +56,7 @@ public class BookResource {
 
     // Edit, Update
     @PutMapping("/edit/{id}")
-    public Book editBook(@RequestBody Book nbook, @PathVariable(value = "id") Integer id) {
+    public Book editBook(@RequestBody Book nbook, @PathVariable(value = "id") Long id) {
         return bookService.findById(id)
                 .map(bk -> {
                     bk.setIsbn(nbook.getIsbn());
@@ -75,24 +76,24 @@ public class BookResource {
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public void deleteBook(@PathVariable(value = "id") Integer id) {
+    public void deleteBook(@PathVariable(value = "id") Long id) {
         try {
             log.info("START:  Book with id {} Deleted", id);
             bookService.delete(id);
             log.info("FINISHED:  Book with id {} Deleted", id);
         } catch (Exception ex) {
             log.info("FAILED:  Book with id {} Deleted", id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-
     }
 
 //     @RequestMapping("/error")
 // public String handleError(HttpServletRequest request) {
 //     Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-    
+
 //     if (status != null) {
 //         Integer statusCode = Integer.valueOf(status.toString());
-    
+
 //         if(statusCode == HttpStatus.NOT_FOUND.value()) {
 //             return "error-404";
 //         }
