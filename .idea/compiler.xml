@@ -32,7 +32,7 @@
       <module name="eureka-server" options="-parameters" />
       <module name="hystrix" options="-parameters" />
       <module name="hystrix-dashboard" options="" />
-      <module name="issuerms" options="-parameters" />
+      <module name="issuerms" options="" />
       <module name="oauth2" options="-parameters" />
     </option>
   </component>
