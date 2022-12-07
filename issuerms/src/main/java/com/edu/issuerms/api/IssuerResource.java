@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api")
 public class IssuerResource {
-   @Autowired
+    @Autowired
     private IssuerService issuerService;
 
     //  Fetch all issers
@@ -49,15 +50,14 @@ public class IssuerResource {
 
     @DeleteMapping(path = "/cancel/{id}")
     //@RequestMapping(value ="/cancel/{id}" , method = RequestMethod.DELETE)
-    public ResponseEntity<Long> cancelIssue(@PathVariable(value = "id") Long id) {
+    public void cancelIssue(@PathVariable(value = "id") Long id) {
         log.info("Issuer with #id {} has cancelIssuer", id);
         boolean isRemoved = issuerService.delete(id);
         if (!isRemoved) {
             log.info("Issuer not found with id {}", id);
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        log.info("Issuer with #id {} has been deleted", id);
-        return new ResponseEntity<>(id, HttpStatus.OK);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } else
+            log.info("Issuer with #id {} has been deleted", id);
     }
 
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -82,17 +83,17 @@ public class BookResource {
             log.info("FINISHED:  Book with id {} Deleted", id);
         } catch (Exception ex) {
             log.info("FAILED:  Book with id {} Deleted", id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-
     }
 
 //     @RequestMapping("/error")
 // public String handleError(HttpServletRequest request) {
 //     Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-    
+
 //     if (status != null) {
 //         Integer statusCode = Integer.valueOf(status.toString());
-    
+
 //         if(statusCode == HttpStatus.NOT_FOUND.value()) {
 //             return "error-404";
 //         }
