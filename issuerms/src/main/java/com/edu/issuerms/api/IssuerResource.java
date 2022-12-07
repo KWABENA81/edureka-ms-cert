@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api")
 public class IssuerResource {
-    @Autowired
+   @Autowired
     private IssuerService issuerService;
 
     //  Fetch all issers
@@ -28,8 +28,8 @@ public class IssuerResource {
     }
 
     //  Fetch Book by id
-    @GetMapping(path="/issuer/{id}")
-    public ResponseEntity<Issuer> issuerById(@PathVariable(value = "id") Integer id) {
+    @GetMapping(path = "/issuer/{id}")
+    public ResponseEntity<Issuer> issuerById(@PathVariable(value = "id") Long id) {
         Optional<Issuer> issuerOptional = issuerService.findById(id);
         if (issuerOptional.isPresent()) {
             log.info(" Issuer findById OK");
@@ -42,14 +42,14 @@ public class IssuerResource {
 
 
     //  Issue Book to IssuerCustomer
-    @PostMapping(path="/add")
+    @PostMapping(path = "/add")
     public Issuer addIssuer(@RequestBody Issuer issuer) {
         return issuerService.issueBook(issuer);
     }
 
-    @DeleteMapping(path="/cancel/{id}")
+    @DeleteMapping(path = "/cancel/{id}")
     //@RequestMapping(value ="/cancel/{id}" , method = RequestMethod.DELETE)
-    public ResponseEntity<Integer> cancelIssue(@PathVariable(value = "id") Integer id) {
+    public ResponseEntity<Long> cancelIssue(@PathVariable(value = "id") Long id) {
         log.info("Issuer with #id {} has cancelIssuer", id);
         boolean isRemoved = issuerService.delete(id);
         if (!isRemoved) {

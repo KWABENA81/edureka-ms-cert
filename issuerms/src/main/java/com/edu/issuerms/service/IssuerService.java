@@ -23,7 +23,7 @@ public class IssuerService implements IIssuerService {
     }
 
     @Override
-    public Optional<Issuer> findById(Integer id) {
+    public Optional<Issuer> findById(Long id) {
         return issuerRepository.findById(id);
     }
 
@@ -34,7 +34,7 @@ public class IssuerService implements IIssuerService {
     }
 
     @Override
-    public boolean delete(Integer id) {
+    public boolean delete(Long id) {
         try {
             issuerRepository.deleteById(id);
         } catch (Exception ex) {

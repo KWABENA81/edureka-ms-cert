@@ -35,7 +35,7 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public Optional<Book> findById(Integer id) {
+    public Optional<Book> findById(Long id) {
         return bookRepository.findById(id);
     }
 
@@ -45,7 +45,7 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         // Optional<Book> optionalBook = bookRepository.findById(id);
 
         // if (optionalBook.isPresent()) {

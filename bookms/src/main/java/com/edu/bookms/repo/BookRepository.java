@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BookRepository extends JpaRepository<Book, Integer> {
+public interface BookRepository extends JpaRepository<Book, Long> {
 
     @Query("SELECT bk FROM Book bk WHERE bk.isbn=(:isbn)")
    // List<Book>

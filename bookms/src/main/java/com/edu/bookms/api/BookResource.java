@@ -36,7 +36,7 @@ public class BookResource {
 
     // Fetch Book by id
     @GetMapping("/book/{id}")
-    public ResponseEntity<Book> booksById(@PathVariable(value = "id") Integer id) {
+    public ResponseEntity<Book> booksById(@PathVariable(value = "id") Long id) {
         Optional<Book> bookOptional = bookService.findById(id);
         if (bookOptional.isPresent()) {
             log.info(" Books findById OK");
@@ -55,7 +55,7 @@ public class BookResource {
 
     // Edit, Update
     @PutMapping("/edit/{id}")
-    public Book editBook(@RequestBody Book nbook, @PathVariable(value = "id") Integer id) {
+    public Book editBook(@RequestBody Book nbook, @PathVariable(value = "id") Long id) {
         return bookService.findById(id)
                 .map(bk -> {
                     bk.setIsbn(nbook.getIsbn());
@@ -75,7 +75,7 @@ public class BookResource {
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public void deleteBook(@PathVariable(value = "id") Integer id) {
+    public void deleteBook(@PathVariable(value = "id") Long id) {
         try {
             log.info("START:  Book with id {} Deleted", id);
             bookService.delete(id);
