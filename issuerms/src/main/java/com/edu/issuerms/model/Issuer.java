@@ -3,6 +3,7 @@ package com.edu.issuerms.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+//import org.hibernate.annotations.Table;
 import org.springframework.data.annotation.Id;
 
 
@@ -14,7 +15,7 @@ import org.springframework.data.annotation.Id;
 public class Issuer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    //@Column(name = "id")
     private Integer id;
 
     //@Column(name = "customer_info", length = 30)
