@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 //@Transactional
-public interface IssuerRepository extends JpaRepository<Issuer, Integer> {
+public interface IssuerRepository extends JpaRepository<Issuer, Long> {
 
     @Query("SELECT iss FROM Issuer iss WHERE iss.isbn=(:isbn)")
     List<Issuer> findByIsbn(@Param("isbn") String isbn);

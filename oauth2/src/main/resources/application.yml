@@ -8,3 +8,7 @@ spring:
 #
   application:
     name: OAUTH2
+
+  security:
+    user:
+      password: asksef@

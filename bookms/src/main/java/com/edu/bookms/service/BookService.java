@@ -8,21 +8,24 @@ import com.edu.bookms.model.Book;
 import com.edu.bookms.repo.BookRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
  @Service
+ @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookService implements IBookService {
 
     @Autowired
     private BookRepository bookRepository;
+
     @Autowired
     private RestTemplate restTemplate;
 
@@ -32,7 +35,7 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public Optional<Book> findById(Integer id) {
+    public Optional<Book> findById(Long id) {
         return bookRepository.findById(id);
     }
 
@@ -42,13 +45,14 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public boolean delete(Integer id) {
-        Optional<Book> optionalBook = bookRepository.findById(id);
-        if (optionalBook.isPresent()) {
-            Book book = optionalBook.get();
-            bookRepository.delete(book);
-            return true;
-        } else return false;
+    public void delete(Long id) {
+        // Optional<Book> optionalBook = bookRepository.findById(id);
+
+        // if (optionalBook.isPresent()) {
+        //     Book book = optionalBook.get();
+        log.info(" BookService:  Book with id {} Deleted", id);
+            bookRepository.deleteById(id);           
+       // } 
     }
 
     public Book save(Book book) {

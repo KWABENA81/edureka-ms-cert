@@ -17,7 +17,7 @@ public class Book implements Comparable<Book> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "isbn", nullable = false, length = 45)
     private String isbn;

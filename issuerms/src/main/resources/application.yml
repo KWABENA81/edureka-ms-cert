@@ -30,6 +30,9 @@ spring:
       hibernate:
         format_sql: true
 
+  security:
+    user:
+      password: asksef@
 #  security:
 #    enabled: false
 #  #spring:
@@ -54,7 +57,7 @@ eureka:
 logging:
   file: #issuer.log
     #name: '/var/log/app.log'
-    path: /home/sask/home/Documents/tmp/log
+    path: tmp/log
 
 
 management:

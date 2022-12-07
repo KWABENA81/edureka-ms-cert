@@ -1,6 +1,5 @@
 package com.edu.bookms.api;
 
-
 import com.edu.bookms.common.TransactionRequest;
 import com.edu.bookms.common.TransactionResponse;
 import com.edu.bookms.model.Book;
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +27,7 @@ public class BookResource {
     @Autowired
     private BookService bookService;
 
-    //  Fetch Books
+    // Fetch Books
     @GetMapping(path = "/books")
     public ResponseEntity<List<Book>> books() {
         log.info("Start All Books retrieval");
@@ -35,10 +35,9 @@ public class BookResource {
         return ResponseEntity.ok(books);
     }
 
-
-    //  Fetch Book by id
+    // Fetch Book by id
     @GetMapping("/book/{id}")
-    public ResponseEntity<Book> booksById(@PathVariable(value = "id") Integer id) {
+    public ResponseEntity<Book> booksById(@PathVariable(value = "id") Long id) {
         Optional<Book> bookOptional = bookService.findById(id);
         if (bookOptional.isPresent()) {
             log.info(" Books findById OK");
@@ -49,16 +48,15 @@ public class BookResource {
         }
     }
 
-
-    //  Add Book
+    // Add Book
     @PostMapping("/add")
     public TransactionResponse issueBook(@RequestBody TransactionRequest transactionRequest) {
         return bookService.saveBook(transactionRequest);
     }
 
-    //  Edit, Update
+    // Edit, Update
     @PutMapping("/edit/{id}")
-    public Book editBook(@RequestBody Book nbook, @PathVariable(value = "id") Integer id) {
+    public Book editBook(@RequestBody Book nbook, @PathVariable(value = "id") Long id) {
         return bookService.findById(id)
                 .map(bk -> {
                     bk.setIsbn(nbook.getIsbn());
@@ -71,25 +69,38 @@ public class BookResource {
                     return bookService.save(bk);
                 })
                 .orElseGet(() -> {
-                            nbook.setId(id);
-                            bookService.save(nbook);
-                            return bookService.save(nbook);
-                        }
-                );
+                    nbook.setId(id);
+                    bookService.save(nbook);
+                    return bookService.save(nbook);
+                });
     }
 
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Integer> deleteBook(@PathVariable(value = "id") Integer id) {
-        log.info("Book not found with id {}", id);
-        boolean isRemoved = bookService.delete(id);
-        log.info("Book not found with id {}", isRemoved);
-        if (!isRemoved) {
-            log.info("Book not found with id {}", id);
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @DeleteMapping(value = "/delete/{id}")
+    public void deleteBook(@PathVariable(value = "id") Long id) {
+        try {
+            log.info("START:  Book with id {} Deleted", id);
+            bookService.delete(id);
+            log.info("FINISHED:  Book with id {} Deleted", id);
+        } catch (Exception ex) {
+            log.info("FAILED:  Book with id {} Deleted", id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        log.info("Book with #id {} has been deleted", id);
-        return new ResponseEntity<>(id, HttpStatus.OK);
     }
-}
 
+//     @RequestMapping("/error")
+// public String handleError(HttpServletRequest request) {
+//     Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+
+//     if (status != null) {
+//         Integer statusCode = Integer.valueOf(status.toString());
+
+//         if(statusCode == HttpStatus.NOT_FOUND.value()) {
+//             return "error-404";
+//         }
+//         else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
+//             return "error-500";
+//         }
+//     }
+//     return "error";
+// }
+}
