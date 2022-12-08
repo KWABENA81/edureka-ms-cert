@@ -32,7 +32,8 @@ spring:
 
   security:
     user:
-      password: asksef@
+      name: Edureka
+      password: edureka@
 #  security:
 #    enabled: false
 #  #spring:
