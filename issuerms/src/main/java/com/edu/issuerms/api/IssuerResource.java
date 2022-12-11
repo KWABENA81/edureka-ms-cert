@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
+//@CrossOrigin(origins = {"${app.security.cors.origin}"})
 @RestController
 @RequestMapping("/api")
 public class IssuerResource {
@@ -21,7 +22,7 @@ public class IssuerResource {
     private IssuerService issuerService;
 
     //  Fetch all issers
-    @GetMapping(path = "/issuers") //  @RequestMapping(value = "/employees", produces = "application/json")
+    @GetMapping(path = "/issuers")
     public ResponseEntity<List<Issuer>> issuers() {
         log.info("Start All Issuers retrieval");
         List<Issuer> issuers = issuerService.findAll().stream().collect(Collectors.toList());

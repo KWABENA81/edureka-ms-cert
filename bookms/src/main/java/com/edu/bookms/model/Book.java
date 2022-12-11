@@ -12,7 +12,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 @Table(name = "BOOK_TB")
-public class Book implements Comparable<Book> {
+public class Book  {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -35,10 +36,5 @@ public class Book implements Comparable<Book> {
 
     @Column(name = "total_copies")
     private Integer totalCopies;
-
-    @Override
-    public int compareTo(Book bk) {
-        return this.isbn.compareTo(bk.isbn);
-    }
 
 }

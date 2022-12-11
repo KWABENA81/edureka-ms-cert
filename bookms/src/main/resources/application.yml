@@ -35,12 +35,20 @@ spring:
       hibernate:
         format_sql: true
 
+#spring:
+  devtools:
+    add-properties: false
 
   security:
     user:
       name: Edureka
       password: edureka@
-#  security:
+
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "https://api.asgardeo.io/t/imeshaorg/oauth2/token"
+
 #    enabled: false
 ##spring:
 #  autoconfigure:
@@ -49,6 +57,10 @@ spring:
 #  autoconfigure:
 #    exclude: org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration
 
+app:
+  security:
+    cors:
+      origin: http://localhost:3000
 
 eureka:
   client:
