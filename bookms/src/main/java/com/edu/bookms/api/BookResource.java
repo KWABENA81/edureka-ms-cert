@@ -19,8 +19,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@AllArgsConstructor
-@NoArgsConstructor
+@CrossOrigin(origins = {"${app.security.cors.origin}"})
 @RequestMapping(path = "/api")
 public class BookResource {
 

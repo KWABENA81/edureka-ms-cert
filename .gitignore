@@ -1,2 +1,4 @@
 hold/
 log/
+*.zip
+.idea/
