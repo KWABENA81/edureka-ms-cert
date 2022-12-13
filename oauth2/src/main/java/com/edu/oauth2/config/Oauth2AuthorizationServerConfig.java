@@ -2,6 +2,7 @@ package com.edu.oauth2.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,16 +13,19 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableAuthorizationServer
-public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
+public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
+    @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
 
     @Override
@@ -34,11 +38,15 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
 
     }
 
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer ouathServer) {
+        ouathServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+            }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        endpoints.userDetailsService(userDetailsService).authenticationManager(authenticationManager)
-                .accessTokenConverter(jwtAccessTokenConverter()).tokenStore(jwtTokenStore());
+        endpoints.tokenStore(jwtTokenStore()).authenticationManager(authenticationManager)
+                .accessTokenConverter(jwtAccessTokenConverter());
     }
 
     @Bean
@@ -57,7 +65,6 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
         accessTokenConverter.setSigningKey("123456789012345678901234567890AB");
-
         return accessTokenConverter;
     }
 
