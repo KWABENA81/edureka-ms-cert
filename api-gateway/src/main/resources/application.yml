@@ -10,7 +10,7 @@ spring:
       discovery.locator:
         enabled: false
         lowerCaseServiceId: true
-      # http://localhost:8080/dummy-bookms/books -> http://localhost:8081/books
+        # http://localhost:8080/dummy-bookms/books -> http://localhost:8081/books
       routes:
         - id: BOOKMS
           uri: lb://BOOKMS

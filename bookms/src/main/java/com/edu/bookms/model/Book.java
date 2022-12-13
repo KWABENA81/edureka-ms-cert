@@ -3,9 +3,9 @@ package com.edu.bookms.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Table(name = "BOOK_TB")
 public class Book  {
 
-    @Id
+    @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
@@ -37,5 +37,4 @@ public class Book  {
 
     @Column(name = "total_copies")
     private Integer totalCopies;
-
 }
