@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 public class CustomFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain filterChain) {
-        log.info("...sending chain filter ...");
+        log.info("...sending chain filter Inside API Gateway...");
         return filterChain.filter(exchange);
     }
 }

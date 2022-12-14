@@ -1,4 +1,4 @@
-package com.edu.apigateway;
+package com.edu.apigateway.config;
 
 
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,9 @@ public class ResourceServerConfig {
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity httpSecurity) {
-        httpSecurity.authorizeExchange().anyExchange().authenticated().and()
+        httpSecurity
+                .authorizeExchange().anyExchange().authenticated()
+                .and()
                 .oauth2ResourceServer().jwt();
         return httpSecurity.build();
     }
@@ -25,8 +27,7 @@ public class ResourceServerConfig {
     @Bean
     public ReactiveJwtDecoder reactiveDecoder() {
         byte[] keyInBytes = "123456789012345678901234567890AB".getBytes();
-        SecretKeySpec secretKeySpec
-                = new SecretKeySpec(keyInBytes, 0, keyInBytes.length, "AES");
+        SecretKeySpec secretKeySpec = new SecretKeySpec(keyInBytes, 0, keyInBytes.length, "AES");
         return NimbusReactiveJwtDecoder.withSecretKey(secretKeySpec).build();
     }
 }

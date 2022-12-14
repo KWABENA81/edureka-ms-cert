@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 @EnableWebMvc
 public class WebConfig {
     @Bean
-    FilterRegistrationBean forwardedHeaderFilter() {
+   public FilterRegistrationBean forwardedHeaderFilter() {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
         filterRegistrationBean.setFilter(new ForwardedHeaderFilter());
         filterRegistrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);

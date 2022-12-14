@@ -1,5 +1,6 @@
 package com.edu.oauth2.config;
 
+
 import com.edu.oauth2.common.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -19,21 +20,28 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @SuppressWarnings("deprecation")
-//@Order(SecurityProperties.BASIC_AUTH_ORDER - 6)
+@Order(SecurityProperties.BASIC_AUTH_ORDER - 6)
 @Configuration
 @EnableWebSecurity
 @EnableDiscoveryClient
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    private CustomerService customerService;
 
     @Autowired
     public static NoOpPasswordEncoder passwordEncoder() {
         return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
     }
 
+//    @Autowired
+//    @Primary
+//    @Override
+//    public void configure(AuthenticationManagerBuilder builder) throws Exception {
+//        builder.userDetailsService(customerService);
+//    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated().and()
-                .formLogin().loginPage("/login").permitAll();       //"/login"
+        http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll();
     }
 
     @Bean
@@ -53,8 +61,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void globalUserDetails(final AuthenticationManagerBuilder builder) throws Exception {
-        builder.inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER")
+        builder.inMemoryAuthentication().withUser("user")
+                .password("password").roles("USER")
                 .and()
                 .withUser("admin").password("admin").roles("ADMIN");
     }
