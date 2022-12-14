@@ -24,7 +24,6 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
-
     @Autowired
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
@@ -32,8 +31,8 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("client")
-                .secret("secret")
+                .withClient("candy")
+                .secret("123")
                 .authorizedGrantTypes("client_credentials", "password", "refresh_token")
                 .scopes("read");
 

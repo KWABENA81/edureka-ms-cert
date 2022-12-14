@@ -23,3 +23,11 @@
 				then( text => alert(text)); 
 			})();
 		
+		
+		
+		
+curl -v -X POST -u client:secret 'http://localhost:9000/oauth/tokengrant_type=password&username=john&password=123&scope=read'
+
+curl -v -X POST -u client:secret 'http://localhost:9195/oauth/tokengrant_type=password&username=john&password=123&scope=read'
+
+curl -v -X POST -u client:secret 'http://localhost:9797/oauth/tokengrant_type=password&username=john&password=123&scope=read'
