@@ -31,8 +31,7 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-                .withClient("client")
+        clients.inMemory().withClient("client")
                 .secret("secret")
                 .authorizedGrantTypes("client_credentials", "password", "refresh_token")
                 .scopes("read");
@@ -40,8 +39,8 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
     }
 
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer ouathServer) {
-        ouathServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+    public void configure(AuthorizationServerSecurityConfigurer ouath2Server) {
+        ouath2Server.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
     }
 
     @Override

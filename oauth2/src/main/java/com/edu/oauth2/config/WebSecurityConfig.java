@@ -1,6 +1,5 @@
 package com.edu.oauth2.config;
 
-import com.edu.oauth2.common.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -16,25 +15,48 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @SuppressWarnings("deprecation")
-//@Order(SecurityProperties.BASIC_AUTH_ORDER - 6)
+@Order(SecurityProperties.BASIC_AUTH_ORDER - 6)
 @Configuration
 @EnableWebSecurity
 @EnableDiscoveryClient
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    public static NoOpPasswordEncoder passwordEncoder() {
-        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+//    @Autowired
+//    public static NoOpPasswordEncoder passwordEncoder() {
+//        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+//    }
+
+    @Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated().and()
-                .formLogin().loginPage("/login").permitAll();       //"/login"
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .inMemoryAuthentication()
+                .withUser("user")
+                .password("password")
+                .roles("USER")
+                .and()
+                .withUser("Edureka")
+                .password("password")
+                .roles("ADMIN");
     }
+
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().loginPage("/login").permitAll();
+    }
+
 
     @Bean
     public UserDetailsService uds() {

@@ -13,7 +13,7 @@ public class WelcomeResource {
 
     @RequestMapping(method = RequestMethod.GET, value = "/login")
     public String login() {
-        return "login";
+        return "login0";
     }
 
 }

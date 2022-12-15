@@ -12,7 +12,7 @@
 	<artifactId>eureka-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>eureka-server</name>
-	<description>Edureka certification training project for Microservices with Spring Boot - The Service Registry</description>
+	<description>Edureka Project for Microservices with Spring Boot - The Service Registry</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>2021.0.5</spring-cloud.version>
