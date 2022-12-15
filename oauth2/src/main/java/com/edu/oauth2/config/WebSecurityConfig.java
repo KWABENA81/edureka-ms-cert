@@ -22,21 +22,22 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Order(SecurityProperties.BASIC_AUTH_ORDER - 6)
 @Configuration
 @EnableWebSecurity
-@EnableDiscoveryClient
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+//    private PasswordEncoder passwordEncoder;
+//    private UserDetailsManager userDetailsManager;
 //    @Autowired
-//    public static NoOpPasswordEncoder passwordEncoder() {
-//        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+//    public void setUserDetailsManager(UserDetailsManager userDetailsManager) {
+//        this.userDetailsManager = userDetailsManager;
+//    }
+//
+//    @Autowired
+//    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+//        this.passwordEncoder = passwordEncoder;
 //    }
 
-    @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-    }
-
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
                 .withUser("user")
