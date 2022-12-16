@@ -75,8 +75,4 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
         return accessTokenConverter;
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-    }
 }
