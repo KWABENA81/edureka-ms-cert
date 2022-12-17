@@ -31,11 +31,18 @@ spring:
         format_sql: true
 
   security:
+    enabled: true
     user:
       name: Edureka
-      password: edureka@
-#  security:
-#    enabled: false
+      password: password
+      roles: USER, ADMIN
+
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: https://idp.example.com/issuer
+          jwk-set-uri: https://idp.example.com/.well-known/jwks.json
+
 #  #spring:
 #  autoconfigure:
 #    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration

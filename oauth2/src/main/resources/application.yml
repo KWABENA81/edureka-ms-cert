@@ -16,20 +16,18 @@ spring:
     use-forward-headers: false
 
   security:
+    enabled: true
     user:
       name: Edureka
-      password: edureka@
+      password: password
+      roles: USER, ADMIN
 
     oauth2:
       resource-server:
         jwt:
           issuer-uri: https://idp.example.com/issuer
           jwk-set-uri: https://idp.example.com/.well-known/jwks.json
-#    oauth2:
-#      resource-server:
-#        jwt:
-#          issuer-uri:
-#          jwk-set-uri:
+
 #  main:
 #    allow-bean-definition-overriding: true
 

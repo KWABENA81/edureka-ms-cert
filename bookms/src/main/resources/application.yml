@@ -40,14 +40,28 @@ spring:
     add-properties: false
 
   security:
+    enabled: true
     user:
       name: Edureka
-      password: edureka@
+      password: password
+      roles: USER, ADMIN
 
     oauth2:
-      resourceserver:
+      resource-server:
         jwt:
-          issuer-uri: "https://api.asgardeo.io/t/imeshaorg/oauth2/token"
+          issuer-uri: https://idp.example.com/issuer
+          jwk-set-uri: https://idp.example.com/.well-known/jwks.json
+#  security:
+#    enabled: true
+#    user:
+#      name: Edureka
+#      password: password
+#      roles: USER, ADMIN
+#    oauth2:
+#      resource-server:
+#        jwt:
+#          issuer-uri: "https://api.asgardeo.io/t/imeshaorg/oauth2/token"
+
 
 #    enabled: false
 ##spring:

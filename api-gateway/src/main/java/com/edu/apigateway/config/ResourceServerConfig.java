@@ -11,23 +11,23 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 
 import javax.crypto.spec.SecretKeySpec;
 
-//@Configuration
-//@EnableWebFluxSecurity
+@Configuration
+@EnableWebFluxSecurity
 public class ResourceServerConfig {
 
-//    @Bean
-//    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity httpSecurity) {
-//        httpSecurity
-//                .authorizeExchange().anyExchange().authenticated()
-//                .and()
-//                .oauth2ResourceServer().jwt();
-//        return httpSecurity.build();
-//    }
-//
-//    @Bean
-//    public ReactiveJwtDecoder reactiveDecoder() {
-//        byte[] keyInBytes = "123456789012345678901234567890AB".getBytes();
-//        SecretKeySpec secretKeySpec = new SecretKeySpec(keyInBytes, 0, keyInBytes.length, "AES");
-//        return NimbusReactiveJwtDecoder.withSecretKey(secretKeySpec).build();
-//    }
+    @Bean
+    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity httpSecurity) {
+        httpSecurity
+                .authorizeExchange().anyExchange().authenticated()
+                .and()
+                .oauth2ResourceServer().jwt();
+        return httpSecurity.build();
+    }
+
+    @Bean
+    public ReactiveJwtDecoder reactiveDecoder() {
+        byte[] keyInBytes = "123456789012345678901234567890AB".getBytes();
+        SecretKeySpec secretKeySpec = new SecretKeySpec(keyInBytes, 0, keyInBytes.length, "AES");
+        return NimbusReactiveJwtDecoder.withSecretKey(secretKeySpec).build();
+    }
 }

@@ -2,7 +2,6 @@ package com.edu.oauth2.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -24,17 +23,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    private PasswordEncoder passwordEncoder;
-//    private UserDetailsManager userDetailsManager;
-//    @Autowired
-//    public void setUserDetailsManager(UserDetailsManager userDetailsManager) {
-//        this.userDetailsManager = userDetailsManager;
-//    }
-//
-//    @Autowired
-//    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-//        this.passwordEncoder = passwordEncoder;
-//    }
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
@@ -45,27 +33,46 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .roles("USER")
                 .and()
                 .withUser("Edureka")
-                .password("password")
+                .password("edureka@")
                 .roles("ADMIN");
     }
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().loginPage("/login").permitAll();
+        http
+                .csrf().disable()
+                .authorizeRequests().anyRequest().permitAll();
+
+//                .authorizeRequests().anyRequest().authenticated().and()
+//                .formLogin().loginPage("/login").permitAll();
     }
 
+//    @Bean
+//    public UserDetailsService users() {
+//
+//        return new InMemoryUserDetailsManager(user, admin);
+//    }
 
     @Bean
     public UserDetailsService uds() {
-        UserDetails john = User.withUsername("john").password("123").authorities("read").build();
-
-        InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
-        inMemoryUserDetailsManager.createUser(john);
-        return inMemoryUserDetailsManager;
+        UserDetails john = User.withUsername("john").password("123").roles("USER").authorities("read").build();
+        UserDetails user = User.builder()
+                .username("user")
+                .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
+                .roles("USER").authorities("read")
+                .build();
+        UserDetails edureka = User.builder()
+                .username("Edureka")
+                .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
+                .roles("USER").authorities("read")
+                .build();
+        UserDetails admin = User.builder()
+                .username("admin")
+                .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
+                .roles("USER", "ADMIN").authorities("read")
+                .build();
+        return new InMemoryUserDetailsManager(john, user, edureka, admin);
     }
 
     @Bean
@@ -80,5 +87,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("user").password("password").roles("USER")
                 .and()
                 .withUser("admin").password("admin").roles("ADMIN");
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
     }
 }
