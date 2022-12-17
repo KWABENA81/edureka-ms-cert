@@ -31,25 +31,23 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
+        clients
+                .inMemory()
                 .withClient("client")
-                .secret("secret")
+                // .secret("secret")
                 .authorizedGrantTypes("client_credentials", "password", "refresh_token")
-                .scopes("read");
-
+                .scopes("Create", "Read", "Update", "Delete", "Auth:Logout")
+                .accessTokenValiditySeconds(36000)
+                .refreshTokenValiditySeconds(86400);
     }
 
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer ouathServer) {
-        ouathServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+    public void configure(AuthorizationServerSecurityConfigurer ouath2Server) {
+        ouath2Server.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        //endpoints.userDetailsService(userDetailsService)
-        // .authenticationManager(authenticationManager)
-        // .accessTokenConverter(jwtAccessTokenConverter()).tokenStore(jwtTokenStore());
-
         endpoints.tokenStore(jwtTokenStore()).authenticationManager(authenticationManager)
                 .accessTokenConverter(jwtAccessTokenConverter());
     }

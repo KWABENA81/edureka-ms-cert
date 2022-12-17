@@ -29,7 +29,17 @@ public class ApiGatewayApplication {
 
     @Bean
     public RouteLocator routeLocator(RouteLocatorBuilder builder) {
-        return builder.routes().route(r -> r.path("/api/**")
-                .uri("http://localhost:8097/api/books")).build();
+        return builder.routes()
+                .route(r -> r.path("/api/**")
+                        .filters(f -> f.addRequestHeader("issuers", "books"))
+                        .uri("http://localhost:9195/oauth2/api"))
+                .route(p -> p
+                        .host("*.circuitbreaker.com")
+                        .filters(f -> f.circuitBreaker(config -> config
+                                .setName("mycmd")
+                                .setFallbackUri("forward:/fallback")))
+                        .uri("http://httpbin.org:80"))
+                .build();
     }
+
 }
