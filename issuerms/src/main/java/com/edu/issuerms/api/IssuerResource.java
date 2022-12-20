@@ -2,6 +2,7 @@ package com.edu.issuerms.api;
 
 import com.edu.issuerms.model.Issuer;
 import com.edu.issuerms.service.IssuerService;
+//import io.prometheus.client.spring.web.PrometheusTimeMethod;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,7 @@ public class IssuerResource {
 
     //  Fetch Book by id
     @GetMapping(path = "/issuer/{id}")
+    //@PrometheusTimeMethod(name = "issuer_resource_controller_issuer_by_id_duration_seconds", help = "Some helpful info here")
     public ResponseEntity<Issuer> issuerById(@PathVariable(value = "id") Long id) {
         Optional<Issuer> issuerOptional = issuerService.findById(id);
         if (issuerOptional.isPresent()) {

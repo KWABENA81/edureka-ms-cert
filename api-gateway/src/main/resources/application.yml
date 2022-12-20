@@ -45,7 +45,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: hystrix.stream, info, health
+        include:
+          - prometheus  #, health
 
 hystrix:
   command:
