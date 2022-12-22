@@ -1,311 +1,50 @@
-2022-12-18 12:14:42.370  INFO 8787 --- [restartedMain] com.edu.bookms.BookmsApplication         : Starting BookmsApplication using Java 11.0.17 on sask-VirtualBox with PID 8787 (/home/sask/Documents/edureka/edureka-ms-cert/bookms/target/classes started by sask in /home/sask/Documents/edureka/edureka-ms-cert/bookms)
-2022-12-18 12:14:42.448  INFO 8787 --- [restartedMain] com.edu.bookms.BookmsApplication         : No active profile set, falling back to 1 default profile: "default"
-2022-12-18 12:14:43.116  INFO 8787 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-12-18 12:14:52.396  INFO 8787 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-12-18 12:14:53.127  INFO 8787 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 656 ms. Found 1 JPA repository interfaces.
-2022-12-18 12:14:55.639  INFO 8787 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=17c4b6b8-1f6f-3da3-9cd0-737e26c0281d
-2022-12-18 12:14:56.838  INFO 8787 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-12-18 12:14:56.847  INFO 8787 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-12-18 12:14:56.878  INFO 8787 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-12-18 12:14:58.430  INFO 8787 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8097 (http)
-2022-12-18 12:14:58.474  INFO 8787 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-12-18 12:14:58.478  INFO 8787 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-12-18 12:14:59.308  INFO 8787 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-12-18 12:14:59.317  INFO 8787 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 16197 ms
-2022-12-18 12:15:00.515  INFO 8787 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-12-18 12:15:01.421  INFO 8787 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-12-18 12:15:01.505  INFO 8787 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:bookdb'
-2022-12-18 12:15:02.930  INFO 8787 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-12-18 12:15:03.401  INFO 8787 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.11.Final
-2022-12-18 12:15:04.636  INFO 8787 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-12-18 12:15:05.487  INFO 8787 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2022-12-18 12:15:10.160  INFO 8787 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'file:/home/sask/Documents/edureka/edureka-ms-cert/bookms/target/classes/import.sql'
-2022-12-18 12:15:10.180  INFO 8787 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-12-18 12:15:10.224  INFO 8787 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-12-18 12:15:16.203  INFO 8787 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-2022-12-18 12:15:16.325  INFO 8787 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5bd601d5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6a1a52b9, org.springframework.security.web.context.SecurityContextPersistenceFilter@205c280e, org.springframework.security.web.header.HeaderWriterFilter@71acf43b, org.springframework.web.filter.CorsFilter@7181cfd1, org.springframework.security.web.csrf.CsrfFilter@433a2f57, org.springframework.security.web.authentication.logout.LogoutFilter@1b79f32c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5f274c18, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@25f05754, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@fcdbcc7, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@4d5d464c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@22f6a02f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1d4adb5f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@64fecc42, org.springframework.security.web.session.SessionManagementFilter@54a4d35c, org.springframework.security.web.access.ExceptionTranslationFilter@5560ae46, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@54677b6f]
-2022-12-18 12:15:20.170  INFO 8787 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2022-12-18 12:15:20.265  INFO 8787 --- [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
-2022-12-18 12:15:21.034  WARN 8787 --- [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2022-12-18 12:15:21.463  INFO 8787 --- [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2022-12-18 12:15:22.144  INFO 8787 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2022-12-18 12:15:22.171  INFO 8787 --- [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 12:15:22.432  INFO 8787 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2022-12-18 12:15:22.440  INFO 8787 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2022-12-18 12:15:22.440  INFO 8787 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2022-12-18 12:15:22.440  INFO 8787 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2022-12-18 12:15:22.449  INFO 8787 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2022-12-18 12:15:22.458  INFO 8787 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
-2022-12-18 12:15:22.458  INFO 8787 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2022-12-18 12:15:25.580  INFO 8787 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2022-12-18 12:15:25.655  INFO 8787 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
-2022-12-18 12:15:25.691  INFO 8787 --- [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
-2022-12-18 12:15:25.776  INFO 8787 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1671383725774 with initial instances count: 2
-2022-12-18 12:15:25.842  INFO 8787 --- [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application BOOKMS with eureka with status UP
-2022-12-18 12:15:25.850  INFO 8787 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1671383725850, current=UP, previous=STARTING]
-2022-12-18 12:15:25.872  INFO 8787 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097: registering service...
-2022-12-18 12:15:26.160  INFO 8787 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8097 (http) with context path ''
-2022-12-18 12:15:26.176  INFO 8787 --- [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8097
-2022-12-18 12:15:26.519  INFO 8787 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097 - registration status: 204
-2022-12-18 12:15:26.627  INFO 8787 --- [restartedMain] com.edu.bookms.BookmsApplication         : Started BookmsApplication in 49.093 seconds (JVM running for 54.599)
-2022-12-18 12:20:22.476  INFO 8787 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 12:25:22.481  INFO 8787 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 12:30:22.483  INFO 8787 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 12:35:22.530  INFO 8787 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 12:40:22.533  INFO 8787 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 12:45:22.537  INFO 8787 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 12:50:22.539  INFO 8787 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 12:55:22.586  INFO 8787 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 13:00:22.588  INFO 8787 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 13:01:26.828  INFO 8787 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application BOOKMS with eureka with status DOWN
-2022-12-18 13:01:26.864  INFO 8787 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1671386486829, current=DOWN, previous=UP]
-2022-12-18 13:01:26.896  INFO 8787 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097: registering service...
-2022-12-18 13:01:27.223  INFO 8787 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097 - registration status: 204
-2022-12-18 13:01:32.036  INFO 8787 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-12-18 13:01:32.036  INFO 8787 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-12-18 13:01:32.949  WARN 8787 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
-2022-12-18 13:01:32.976  INFO 8787 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-12-18 13:01:33.094  INFO 8787 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-12-18 13:01:33.134  INFO 8787 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
-2022-12-18 13:01:36.244  INFO 8787 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
-2022-12-18 13:01:36.702  INFO 8787 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097 - deregister  status: 200
-2022-12-18 13:01:36.743  INFO 8787 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
-2022-12-18 13:02:59.085  INFO 10361 --- [restartedMain] com.edu.bookms.BookmsApplication         : Starting BookmsApplication using Java 11.0.17 on sask-VirtualBox with PID 10361 (/home/sask/Documents/edureka/edureka-ms-cert/bookms/target/classes started by sask in /home/sask/Documents/edureka/edureka-ms-cert/bookms)
-2022-12-18 13:02:59.110  INFO 10361 --- [restartedMain] com.edu.bookms.BookmsApplication         : No active profile set, falling back to 1 default profile: "default"
-2022-12-18 13:03:00.059  INFO 10361 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-12-18 13:03:03.174  INFO 10361 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-12-18 13:03:03.423  INFO 10361 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 225 ms. Found 1 JPA repository interfaces.
-2022-12-18 13:03:04.309  INFO 10361 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=6e4b0c22-b4a1-3148-82b5-4e3ef7c4b299
-2022-12-18 13:03:04.773  INFO 10361 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-12-18 13:03:04.776  INFO 10361 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-12-18 13:03:04.779  INFO 10361 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-12-18 13:03:05.312  INFO 10361 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8097 (http)
-2022-12-18 13:03:05.327  INFO 10361 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-12-18 13:03:05.328  INFO 10361 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-12-18 13:03:05.638  INFO 10361 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-12-18 13:03:05.645  INFO 10361 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5585 ms
-2022-12-18 13:03:06.137  INFO 10361 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-12-18 13:03:06.307  INFO 10361 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-12-18 13:03:06.323  INFO 10361 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:bookdb'
-2022-12-18 13:03:06.786  INFO 10361 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-12-18 13:03:06.950  INFO 10361 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.11.Final
-2022-12-18 13:03:08.158  INFO 10361 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-12-18 13:03:08.417  INFO 10361 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2022-12-18 13:03:09.396  INFO 10361 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'file:/home/sask/Documents/edureka/edureka-ms-cert/bookms/target/classes/import.sql'
-2022-12-18 13:03:09.410  INFO 10361 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-12-18 13:03:09.422  INFO 10361 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-12-18 13:03:11.224  INFO 10361 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2022-12-18 13:03:11.264  INFO 10361 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3ac7b9a5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@363972e7, org.springframework.security.web.context.SecurityContextPersistenceFilter@43f27c96, org.springframework.security.web.header.HeaderWriterFilter@44850038, org.springframework.web.filter.CorsFilter@6d445b9f, org.springframework.security.web.csrf.CsrfFilter@6987fc8f, org.springframework.security.web.authentication.logout.LogoutFilter@4d9d4c6d, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@345eaab2, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@4d1094ab, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@77dab879, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@11707b14, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1566c4b8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7d5831fe, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70573db6, org.springframework.security.web.session.SessionManagementFilter@36b4c19e, org.springframework.security.web.access.ExceptionTranslationFilter@62103f10, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@34752420]
-2022-12-18 13:03:12.536  WARN 10361 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
-2022-12-18 13:03:12.706  INFO 10361 --- [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
-2022-12-18 13:03:13.159  WARN 10361 --- [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2022-12-18 13:03:13.369  INFO 10361 --- [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2022-12-18 13:03:13.612  INFO 10361 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2022-12-18 13:03:13.621  INFO 10361 --- [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 13:03:13.705  INFO 10361 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2022-12-18 13:03:13.705  INFO 10361 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2022-12-18 13:03:13.706  INFO 10361 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2022-12-18 13:03:13.706  INFO 10361 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2022-12-18 13:03:13.706  INFO 10361 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2022-12-18 13:03:13.706  INFO 10361 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
-2022-12-18 13:03:13.706  INFO 10361 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2022-12-18 13:03:14.786  INFO 10361 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2022-12-18 13:03:14.790  INFO 10361 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
-2022-12-18 13:03:14.810  INFO 10361 --- [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
-2022-12-18 13:03:14.848  INFO 10361 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1671386594833 with initial instances count: 4
-2022-12-18 13:03:14.853  INFO 10361 --- [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application BOOKMS with eureka with status UP
-2022-12-18 13:03:14.854  INFO 10361 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1671386594854, current=UP, previous=STARTING]
-2022-12-18 13:03:14.857  INFO 10361 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097: registering service...
-2022-12-18 13:03:14.952  INFO 10361 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8097 (http) with context path ''
-2022-12-18 13:03:14.955  INFO 10361 --- [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8097
-2022-12-18 13:03:15.026  INFO 10361 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097 - registration status: 204
-2022-12-18 13:03:15.076  INFO 10361 --- [restartedMain] com.edu.bookms.BookmsApplication         : Started BookmsApplication in 18.499 seconds (JVM running for 20.401)
-2022-12-18 13:08:13.710  INFO 10361 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 13:13:13.716  INFO 10361 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 13:18:13.718  INFO 10361 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 13:23:13.720  INFO 10361 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 13:28:13.723  INFO 10361 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 13:33:13.726  INFO 10361 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 13:38:13.728  INFO 10361 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 13:43:13.733  INFO 10361 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 13:46:03.850  INFO 10361 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application BOOKMS with eureka with status DOWN
-2022-12-18 13:46:03.851  INFO 10361 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1671389163850, current=DOWN, previous=UP]
-2022-12-18 13:46:03.851  INFO 10361 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097: registering service...
-2022-12-18 13:46:03.900  INFO 10361 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097 - registration status: 204
-2022-12-18 13:46:04.789  INFO 10361 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-12-18 13:46:04.790  INFO 10361 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-12-18 13:46:05.393  WARN 10361 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
-2022-12-18 13:46:05.399  INFO 10361 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-12-18 13:46:05.408  INFO 10361 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-12-18 13:46:05.410  INFO 10361 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
-2022-12-18 13:46:08.414  INFO 10361 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
-2022-12-18 13:46:08.443  INFO 10361 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097 - deregister  status: 200
-2022-12-18 13:46:08.456  INFO 10361 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
-2022-12-18 13:48:27.880  INFO 11185 --- [restartedMain] com.edu.bookms.BookmsApplication         : Starting BookmsApplication using Java 11.0.17 on sask-VirtualBox with PID 11185 (/home/sask/Documents/edureka/edureka-ms-cert/bookms/target/classes started by sask in /home/sask/Documents/edureka/edureka-ms-cert/bookms)
-2022-12-18 13:48:27.883  INFO 11185 --- [restartedMain] com.edu.bookms.BookmsApplication         : No active profile set, falling back to 1 default profile: "default"
-2022-12-18 13:48:27.989  INFO 11185 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-12-18 13:48:30.691  INFO 11185 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-12-18 13:48:30.936  INFO 11185 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 223 ms. Found 1 JPA repository interfaces.
-2022-12-18 13:48:31.700  INFO 11185 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=3ab8b5f4-8a93-3c3e-a7a1-5a7451eef305
-2022-12-18 13:48:31.989  INFO 11185 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-12-18 13:48:31.991  INFO 11185 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-12-18 13:48:31.992  INFO 11185 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-12-18 13:48:32.490  INFO 11185 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8097 (http)
-2022-12-18 13:48:32.520  INFO 11185 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-12-18 13:48:32.524  INFO 11185 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-12-18 13:48:32.731  INFO 11185 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-12-18 13:48:32.732  INFO 11185 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4742 ms
-2022-12-18 13:48:33.045  INFO 11185 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-12-18 13:48:33.292  INFO 11185 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-12-18 13:48:33.330  INFO 11185 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:bookdb'
-2022-12-18 13:48:33.681  INFO 11185 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-12-18 13:48:33.870  INFO 11185 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.11.Final
-2022-12-18 13:48:34.305  INFO 11185 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-12-18 13:48:34.714  INFO 11185 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2022-12-18 13:48:37.985  INFO 11185 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'file:/home/sask/Documents/edureka/edureka-ms-cert/bookms/target/classes/import.sql'
-2022-12-18 13:48:38.009  INFO 11185 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-12-18 13:48:38.017  INFO 11185 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-12-18 13:48:39.613  INFO 11185 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2022-12-18 13:48:39.653  INFO 11185 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@49f6c2dd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1bd7eb84, org.springframework.security.web.context.SecurityContextPersistenceFilter@5f121ccb, org.springframework.security.web.header.HeaderWriterFilter@6c78689c, org.springframework.web.filter.CorsFilter@47f90c91, org.springframework.security.web.csrf.CsrfFilter@17cbc68, org.springframework.security.web.authentication.logout.LogoutFilter@190b9c01, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3c6934f, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@5ca71c58, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@4b40d6a7, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1c7448f7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4d31ade1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@59cf0732, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@345f1538, org.springframework.security.web.session.SessionManagementFilter@3170b3d9, org.springframework.security.web.access.ExceptionTranslationFilter@3244e003, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5e61385c]
-2022-12-18 13:48:40.503  INFO 11185 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2022-12-18 13:48:40.550  INFO 11185 --- [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
-2022-12-18 13:48:40.718  WARN 11185 --- [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2022-12-18 13:48:40.807  INFO 11185 --- [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2022-12-18 13:48:40.988  INFO 11185 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2022-12-18 13:48:40.993  INFO 11185 --- [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 13:48:41.171  INFO 11185 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2022-12-18 13:48:41.172  INFO 11185 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2022-12-18 13:48:41.174  INFO 11185 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2022-12-18 13:48:41.175  INFO 11185 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2022-12-18 13:48:41.177  INFO 11185 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2022-12-18 13:48:41.178  INFO 11185 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
-2022-12-18 13:48:41.179  INFO 11185 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2022-12-18 13:48:41.924  INFO 11185 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2022-12-18 13:48:41.928  INFO 11185 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
-2022-12-18 13:48:41.932  INFO 11185 --- [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
-2022-12-18 13:48:41.939  INFO 11185 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1671389321938 with initial instances count: 3
-2022-12-18 13:48:41.942  INFO 11185 --- [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application BOOKMS with eureka with status UP
-2022-12-18 13:48:41.943  INFO 11185 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1671389321943, current=UP, previous=STARTING]
-2022-12-18 13:48:41.946  INFO 11185 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097: registering service...
-2022-12-18 13:48:42.019  INFO 11185 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8097 (http) with context path ''
-2022-12-18 13:48:42.021  INFO 11185 --- [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8097
-2022-12-18 13:48:42.093  INFO 11185 --- [restartedMain] com.edu.bookms.BookmsApplication         : Started BookmsApplication in 15.385 seconds (JVM running for 16.578)
-2022-12-18 13:48:42.106  INFO 11185 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097 - registration status: 204
-2022-12-18 13:53:41.190  INFO 11185 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 13:58:41.248  INFO 11185 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 14:03:41.251  INFO 11185 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 14:08:41.254  INFO 11185 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 14:13:41.256  INFO 11185 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 14:14:03.343  INFO 11185 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application BOOKMS with eureka with status DOWN
-2022-12-18 14:14:03.344  INFO 11185 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1671390843344, current=DOWN, previous=UP]
-2022-12-18 14:14:03.344  INFO 11185 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097: registering service...
-2022-12-18 14:14:03.511  INFO 11185 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097 - registration status: 204
-2022-12-18 14:14:03.679  INFO 11185 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-12-18 14:14:03.680  INFO 11185 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-12-18 14:14:04.043  WARN 11185 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
-2022-12-18 14:14:04.048  INFO 11185 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-12-18 14:14:04.052  INFO 11185 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-12-18 14:14:04.054  INFO 11185 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
-2022-12-18 14:14:07.060  INFO 11185 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
-2022-12-18 14:14:07.112  INFO 11185 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097 - deregister  status: 200
-2022-12-18 14:14:07.151  INFO 11185 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
-2022-12-18 14:14:40.782  INFO 11919 --- [restartedMain] com.edu.bookms.BookmsApplication         : Starting BookmsApplication using Java 11.0.17 on sask-VirtualBox with PID 11919 (/home/sask/Documents/edureka/edureka-ms-cert/bookms/target/classes started by sask in /home/sask/Documents/edureka/edureka-ms-cert/bookms)
-2022-12-18 14:14:40.787  INFO 11919 --- [restartedMain] com.edu.bookms.BookmsApplication         : No active profile set, falling back to 1 default profile: "default"
-2022-12-18 14:14:41.109  INFO 11919 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-12-18 14:14:45.507  INFO 11919 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-12-18 14:14:45.981  INFO 11919 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 388 ms. Found 1 JPA repository interfaces.
-2022-12-18 14:14:46.691  INFO 11919 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=6e4b0c22-b4a1-3148-82b5-4e3ef7c4b299
-2022-12-18 14:14:47.121  INFO 11919 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-12-18 14:14:47.124  INFO 11919 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-12-18 14:14:47.135  INFO 11919 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-12-18 14:14:48.699  INFO 11919 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8097 (http)
-2022-12-18 14:14:48.712  INFO 11919 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-12-18 14:14:48.713  INFO 11919 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-12-18 14:14:49.331  INFO 11919 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-12-18 14:14:49.340  INFO 11919 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 8224 ms
-2022-12-18 14:14:49.925  INFO 11919 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-12-18 14:14:50.239  INFO 11919 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-12-18 14:14:50.262  INFO 11919 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:bookdb'
-2022-12-18 14:14:50.780  INFO 11919 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-12-18 14:14:50.851  INFO 11919 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.11.Final
-2022-12-18 14:14:51.127  INFO 11919 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-12-18 14:14:51.239  INFO 11919 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2022-12-18 14:14:51.807  INFO 11919 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'file:/home/sask/Documents/edureka/edureka-ms-cert/bookms/target/classes/import.sql'
-2022-12-18 14:14:51.811  INFO 11919 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-12-18 14:14:51.824  INFO 11919 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-12-18 14:14:53.428  INFO 11919 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2022-12-18 14:14:53.479  INFO 11919 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4890d8ea, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6309259f, org.springframework.security.web.context.SecurityContextPersistenceFilter@481c5eff, org.springframework.security.web.header.HeaderWriterFilter@5106462b, org.springframework.web.filter.CorsFilter@7ee6c652, org.springframework.security.web.csrf.CsrfFilter@17ee4753, org.springframework.security.web.authentication.logout.LogoutFilter@629fc40f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@30fd671c, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@100a05f5, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@1201f799, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@4f4a6575, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@59850673, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@77ae03e8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5c983abb, org.springframework.security.web.session.SessionManagementFilter@4bf304f, org.springframework.security.web.access.ExceptionTranslationFilter@162c69dd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@147e7002]
-2022-12-18 14:14:54.410  INFO 11919 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2022-12-18 14:14:54.581  INFO 11919 --- [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
-2022-12-18 14:14:54.952  WARN 11919 --- [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2022-12-18 14:14:55.039  INFO 11919 --- [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2022-12-18 14:14:55.313  INFO 11919 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2022-12-18 14:14:55.334  INFO 11919 --- [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 14:14:55.395  INFO 11919 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2022-12-18 14:14:55.396  INFO 11919 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2022-12-18 14:14:55.396  INFO 11919 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2022-12-18 14:14:55.396  INFO 11919 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2022-12-18 14:14:55.396  INFO 11919 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2022-12-18 14:14:55.400  INFO 11919 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
-2022-12-18 14:14:55.404  INFO 11919 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2022-12-18 14:14:56.361  INFO 11919 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2022-12-18 14:14:56.366  INFO 11919 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
-2022-12-18 14:14:56.371  INFO 11919 --- [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
-2022-12-18 14:14:56.405  INFO 11919 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1671390896399 with initial instances count: 3
-2022-12-18 14:14:56.414  INFO 11919 --- [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application BOOKMS with eureka with status UP
-2022-12-18 14:14:56.415  INFO 11919 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1671390896415, current=UP, previous=STARTING]
-2022-12-18 14:14:56.426  INFO 11919 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097: registering service...
-2022-12-18 14:14:56.569  INFO 11919 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097 - registration status: 204
-2022-12-18 14:14:56.574  INFO 11919 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8097 (http) with context path ''
-2022-12-18 14:14:56.576  INFO 11919 --- [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8097
-2022-12-18 14:14:56.672  INFO 11919 --- [restartedMain] com.edu.bookms.BookmsApplication         : Started BookmsApplication in 18.67 seconds (JVM running for 21.556)
-2022-12-18 14:19:55.411  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 14:24:55.416  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 14:29:55.418  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 14:34:55.420  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 14:39:55.425  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 14:44:55.431  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 14:49:55.452  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 14:54:55.456  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 14:59:55.473  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 15:04:55.476  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 15:09:55.482  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 15:14:55.484  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 15:19:55.492  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 15:24:55.495  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 15:29:55.499  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 15:34:55.501  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 15:39:55.506  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 15:44:55.520  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 15:49:55.542  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 15:54:55.560  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 15:59:55.561  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 16:04:55.563  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 16:09:55.567  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 16:14:55.571  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 16:19:55.617  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 16:24:55.619  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 16:29:55.620  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 16:34:55.622  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 16:39:55.624  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 16:44:55.628  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 16:49:55.631  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 16:54:55.643  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 16:59:55.645  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 17:04:55.647  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 17:09:55.747  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 17:14:55.908  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 17:19:56.003  INFO 11919 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-18 17:23:07.424  INFO 11919 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application BOOKMS with eureka with status DOWN
-2022-12-18 17:23:07.457  INFO 11919 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1671402187457, current=DOWN, previous=UP]
-2022-12-18 17:23:07.460  INFO 11919 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097: registering service...
-2022-12-18 17:23:07.532  INFO 11919 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097 - registration status: 204
-2022-12-18 17:23:09.131  INFO 11919 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-12-18 17:23:09.146  INFO 11919 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-12-18 17:23:09.734  WARN 11919 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
-2022-12-18 17:23:09.749  INFO 11919 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-12-18 17:23:09.762  INFO 11919 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-12-18 17:23:09.799  INFO 11919 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
-2022-12-18 17:23:12.812  INFO 11919 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
-2022-12-18 17:23:12.848  INFO 11919 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097 - deregister  status: 200
-2022-12-18 17:23:12.871  INFO 11919 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2022-12-22 01:43:33.312  INFO 9093 --- [restartedMain] com.edu.bookms.BookmsApplication         : Starting BookmsApplication using Java 11.0.17 on sask-VirtualBox with PID 9093 (/home/sask/Documents/edureka/edureka-ms-cert/bookms/target/classes started by sask in /home/sask/Documents/edureka/edureka-ms-cert/bookms)
+2022-12-22 01:43:33.361  INFO 9093 --- [restartedMain] com.edu.bookms.BookmsApplication         : No active profile set, falling back to 1 default profile: "default"
+2022-12-22 01:43:33.716  INFO 9093 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-12-22 01:43:38.330  INFO 9093 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-22 01:43:38.577  INFO 9093 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 231 ms. Found 1 JPA repository interfaces.
+2022-12-22 01:43:39.612  INFO 9093 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=2e5156a5-6e11-3d29-aa54-00ec4e628edf
+2022-12-22 01:43:40.131  INFO 9093 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-12-22 01:43:40.135  INFO 9093 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-12-22 01:43:40.151  INFO 9093 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-12-22 01:43:41.368  INFO 9093 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8097 (http)
+2022-12-22 01:43:41.396  INFO 9093 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-22 01:43:41.402  INFO 9093 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-12-22 01:43:41.787  INFO 9093 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-22 01:43:41.788  INFO 9093 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 8064 ms
+2022-12-22 01:43:42.185  INFO 9093 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-22 01:43:42.444  INFO 9093 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-22 01:43:42.491  INFO 9093 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:bookdb'
+2022-12-22 01:43:43.511  INFO 9093 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-22 01:43:43.842  INFO 9093 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.11.Final
+2022-12-22 01:43:44.428  INFO 9093 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-22 01:43:44.691  INFO 9093 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-12-22 01:43:47.388  INFO 9093 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'file:/home/sask/Documents/edureka/edureka-ms-cert/bookms/target/classes/import.sql'
+2022-12-22 01:43:47.406  INFO 9093 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-22 01:43:47.470  INFO 9093 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-22 01:43:50.432  INFO 9093 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 5 endpoint(s) beneath base path '/actuator'
+2022-12-22 01:43:50.496  INFO 9093 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@62d594fc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@31e62b0a, org.springframework.security.web.context.SecurityContextPersistenceFilter@58de4d94, org.springframework.security.web.header.HeaderWriterFilter@4b960d01, org.springframework.web.filter.CorsFilter@124d35d4, org.springframework.security.web.csrf.CsrfFilter@75f9bc54, org.springframework.security.web.authentication.logout.LogoutFilter@1c49c88a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5604cea3, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@4842098b, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@114e0f96, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3378d0f0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3a563636, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1b6c504a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5f721b37, org.springframework.security.web.session.SessionManagementFilter@54b874d1, org.springframework.security.web.access.ExceptionTranslationFilter@cc87fa3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3d5ac224]
+2022-12-22 01:43:51.964  INFO 9093 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-22 01:43:52.026  INFO 9093 --- [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2022-12-22 01:43:52.355  WARN 9093 --- [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2022-12-22 01:43:52.696  INFO 9093 --- [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2022-12-22 01:43:53.226  INFO 9093 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2022-12-22 01:43:53.247  INFO 9093 --- [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2022-12-22 01:43:53.450  INFO 9093 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2022-12-22 01:43:53.458  INFO 9093 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2022-12-22 01:43:53.470  INFO 9093 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2022-12-22 01:43:53.473  INFO 9093 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2022-12-22 01:43:53.473  INFO 9093 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2022-12-22 01:43:53.474  INFO 9093 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2022-12-22 01:43:53.478  INFO 9093 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2022-12-22 01:43:56.297  INFO 9093 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2022-12-22 01:43:56.319  INFO 9093 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2022-12-22 01:43:56.325  INFO 9093 --- [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2022-12-22 01:43:56.361  INFO 9093 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1671691436358 with initial instances count: 2
+2022-12-22 01:43:56.373  INFO 9093 --- [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application BOOKMS with eureka with status UP
+2022-12-22 01:43:56.374  INFO 9093 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1671691436374, current=UP, previous=STARTING]
+2022-12-22 01:43:56.381  INFO 9093 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097: registering service...
+2022-12-22 01:43:56.568  INFO 9093 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_BOOKMS/192.168.2.156:BOOKMS:8097 - registration status: 204
+2022-12-22 01:43:56.618  INFO 9093 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8097 (http) with context path ''
+2022-12-22 01:43:56.621  INFO 9093 --- [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8097
+2022-12-22 01:43:56.686  INFO 9093 --- [restartedMain] com.edu.bookms.BookmsApplication         : Started BookmsApplication in 25.695 seconds (JVM running for 27.582)

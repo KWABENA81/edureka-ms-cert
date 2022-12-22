@@ -114,9 +114,7 @@ management:
       enabled: true
     health:
       show-details: always
-  #    web:
-  #      exposure:
-  #        include: prometheus, health
+      
   endpoints:
     web:
       exposure:
