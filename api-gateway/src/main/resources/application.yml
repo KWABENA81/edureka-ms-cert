@@ -40,12 +40,38 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
 
-#
+
+# info endpoints configuration
+info:
+  app:
+    name: @project.name@
+    description: @project.description@
+    version: @project.version@
+    encoding: @project.build.sourceEncoding@
+    java:
+      version: @java.version@
+
+# logging
+logging:
+  file:
+    path: tmp/log
+
 management:
+  endpoint:
+    shutdown:
+      enabled: true
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+    health:
+      show-details: always
+
   endpoints:
     web:
       exposure:
-        include: hystrix.stream, info, health
+        include: prometheus, health, info, mappings, env, auditevents  #, shutdown, *
+
 
 hystrix:
   command:

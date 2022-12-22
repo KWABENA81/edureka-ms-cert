@@ -10,6 +10,8 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.RequestMapping;
+import reactor.core.publisher.Mono;
 
 @Slf4j
 @SpringBootApplication
@@ -35,11 +37,14 @@ public class ApiGatewayApplication {
                         .uri("http://localhost:9195/oauth2/api"))
                 .route(p -> p
                         .host("*.circuitbreaker.com")
-                        .filters(f -> f.circuitBreaker(config -> config
-                                .setName("mycmd")
+                        .filters(f -> f.circuitBreaker(config -> config.setName("mycmd")
                                 .setFallbackUri("forward:/fallback")))
                         .uri("http://httpbin.org:80"))
                 .build();
     }
 
+    @RequestMapping("/fallback")
+    public Mono<String> fallback() {
+        return Mono.just("fallback");
+    }
 }

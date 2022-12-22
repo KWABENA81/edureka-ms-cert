@@ -1,5 +1,9 @@
 package com.edu.issuerms;
 
+//import io.prometheus.client.hotspot.DefaultExports;
+//import io.prometheus.client.spring.boot.EnablePrometheusEndpoint;
+//import io.prometheus.client.spring.boot.EnableSpringBootMetricsCollector;
+//import io.prometheus.client.spring.web.EnablePrometheusTiming;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -11,11 +15,15 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @SpringBootApplication
 //@EnableFeignClients
+//@EnablePrometheusEndpoint
+//@EnableSpringBootMetricsCollector
+//@EnablePrometheusTiming
 @EnableEurekaClient
 @EnableWebSecurity
 public class IssuermsApplication {
 
 	public static void main(String[] args) {
+		//DefaultExports.initialize();
 		SpringApplication.run(IssuermsApplication.class, args);
 	}
 	@Bean

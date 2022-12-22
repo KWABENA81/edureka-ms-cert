@@ -59,17 +59,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         UserDetails john = User.withUsername("john").password("123").roles("USER").authorities("read").build();
         UserDetails user = User.builder()
                 .username("user")
-                .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
+                .password("{bcrypt}$2b$12$tcoaaq3PeqkerTb8OS2t5eTBKZFzrnFPJy.s1Fk8OcIZg0aQvUyeq")
                 .roles("USER").authorities("read")
                 .build();
         UserDetails edureka = User.builder()
                 .username("Edureka")
-                .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
+                .password("{bcrypt}$2b$12$tcoaaq3PeqkerTb8OS2t5eTBKZFzrnFPJy.s1Fk8OcIZg0aQvUyeq")
                 .roles("USER").authorities("read")
                 .build();
         UserDetails admin = User.builder()
                 .username("admin")
-                .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
+                .password("{bcrypt}$2b$12$tcoaaq3PeqkerTb8OS2t5eTBKZFzrnFPJy.s1Fk8OcIZg0aQvUyeq")
                 .roles("USER", "ADMIN").authorities("read")
                 .build();
         return new InMemoryUserDetailsManager(john, user, edureka, admin);

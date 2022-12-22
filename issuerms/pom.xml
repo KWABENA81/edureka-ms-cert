@@ -53,6 +53,35 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.prometheus</groupId>-->
+<!--            <artifactId>simpleclient</artifactId>-->
+<!--            <version>0.16.0</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+<!--            <version>1.9.6</version>-->
+        </dependency>
+        <!-- prometheus -->
+        <!-- Hotspot JVM metrics-->
+<!--        <dependency>-->
+<!--            <groupId>io.prometheus</groupId>-->
+<!--            <artifactId>simpleclient_hotspot</artifactId>-->
+<!--            <version>0.2.0</version>-->
+<!--        </dependency>-->
+        <!-- Logback -->
+<!--        <dependency>-->
+<!--            <groupId>io.prometheus</groupId>-->
+<!--            <artifactId>simpleclient_logback</artifactId>-->
+<!--            <version>0.2.0</version>-->
+<!--        </dependency>-->
+        <!-- For spring boot-->
+<!--        <dependency>-->
+<!--            <groupId>io.prometheus</groupId>-->
+<!--            <artifactId>simpleclient_spring_boot</artifactId>-->
+<!--            <version>0.2.0</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -89,7 +118,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <build>
         <plugins>
             <plugin>
@@ -106,5 +134,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
