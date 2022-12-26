@@ -2,6 +2,6 @@ hold/
 log/
 *.zip
 .idea/
-prometheus*/
+#prometheus*/
 .git
-tmp
+tmp/*
