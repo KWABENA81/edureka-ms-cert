@@ -56,7 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService uds() {
-        UserDetails john = User.withUsername("john").password("123").roles("USER").authorities("read").build();
+        UserDetails john = User.withUsername("john").password("123").roles("USER")
+         .authorities("read").build();
         UserDetails user = User.builder()
                 .username("user")
                 .password("{bcrypt}$2b$12$tcoaaq3PeqkerTb8OS2t5eTBKZFzrnFPJy.s1Fk8OcIZg0aQvUyeq")
@@ -89,8 +90,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("admin").password("admin").roles("ADMIN");
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return NoOpPasswordEncoder.getInstance();
+//    }
 }

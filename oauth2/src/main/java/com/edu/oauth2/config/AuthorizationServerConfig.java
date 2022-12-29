@@ -21,7 +21,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableAuthorizationServer
-public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -34,7 +34,7 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
         clients
                 .inMemory()
                 .withClient("client")
-                 .secret("secret")
+                .secret("secret")
                 .authorizedGrantTypes("client_credentials", "password", "refresh_token")
                 .scopes("Create", "Read", "Update", "Delete", "Auth:Logout")
                 .accessTokenValiditySeconds(36000)
@@ -51,7 +51,7 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
         endpoints.userDetailsService(userDetailsService)
                 .authenticationManager(authenticationManager)
                 .accessTokenConverter(jwtAccessTokenConverter())
-                        .tokenStore(jwtTokenStore());
+                .tokenStore(jwtTokenStore());
 //    tokenStore(jwtTokenStore()).authenticationManager(authenticationManager)
 //                .accessTokenConverter(jwtAccessTokenConverter());
     }
@@ -75,4 +75,8 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
         return accessTokenConverter;
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
+    }
 }
