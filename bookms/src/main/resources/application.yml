@@ -27,7 +27,7 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
 
     show-sql: true
     open-in-view: true
@@ -38,6 +38,10 @@ spring:
 #spring:
   devtools:
     add-properties: false
+
+  mvc:
+    pathmatch:
+      matching-strategy:  ant_path_matcher
 
   security:
     enabled: true
