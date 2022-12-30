@@ -43,16 +43,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests().anyRequest().permitAll();
-
 //                .authorizeRequests().anyRequest().authenticated().and()
 //                .formLogin().loginPage("/login").permitAll();
     }
 
 //    @Bean
 //    public UserDetailsService users() {
-//
-//        return new InMemoryUserDetailsManager(user, admin);
-//    }
+//        return new InMemoryUserDetailsManager(user, admin);  }
 
     @Bean
     public UserDetailsService uds() {
