@@ -7,7 +7,6 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.4</version>
         <relativePath/>
-        <!-- lookup parent from repository -->
     </parent>
     <groupId>com.edu</groupId>
     <artifactId>bookms</artifactId>
@@ -136,5 +135,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

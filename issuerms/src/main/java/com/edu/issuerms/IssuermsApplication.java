@@ -17,14 +17,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 //@EnablePrometheusEndpoint
 //@EnableSpringBootMetricsCollector
 //@EnablePrometheusTiming
-@EnableSwagger2
+//@EnableSwagger2
 @EnableWebMvc
 @EnableEurekaClient
 @EnableWebSecurity
 public class IssuermsApplication {
 
     public static void main(String[] args) {
-        //DefaultExports.initialize();
         SpringApplication.run(IssuermsApplication.class, args);
     }
 

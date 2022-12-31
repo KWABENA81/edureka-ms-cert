@@ -29,18 +29,11 @@ import java.util.List;
 @EnableWebMvc
 @Component
 public class SwaggerConfig {
-    //    @Bean
-//    public Docket bookApiDocket() {
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .select()
-//                .apis(RequestHandlerSelectors.basePackage("com.edu.bookms"))
-//                .build();
-//    }
+
     @Bean
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2).groupName("book-api")
-                .apiInfo(apiInfo())
-                .select()
+                .apiInfo(apiInfo()).select()
                 .apis(RequestHandlerSelectors.basePackage("com.edu.bookms"))
                 .paths(PathSelectors.any())
                 .build();
@@ -49,7 +42,8 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Book API").description("Book API")
-                .licenseUrl("kwabena81@yahoo.com").version("1.0").build();
+                //.licenseUrl("kwabena81@yahoo.com")
+                .version("1.0").build();
     }
 
     private boolean shouldRegisterLinksMapping(WebEndpointProperties webEndpointProperties,
