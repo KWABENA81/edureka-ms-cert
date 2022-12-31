@@ -31,11 +31,6 @@ import java.util.List;
 @Component
 public class SwaggerConfig {
 
-    //    @Bean
-//    public Docket productApi() {
-//        return new Docket(DocumentationType.SWAGGER_2).select()
-//                .apis(RequestHandlerSelectors.basePackage("com.edu.issuerms")).build();
-//    }
     @Bean
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2).groupName("issuer-api")
