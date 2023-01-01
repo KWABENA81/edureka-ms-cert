@@ -15,8 +15,7 @@ import reactor.core.publisher.Mono;
 
 @Slf4j
 @SpringBootApplication
-@EnableEurekaClient
-@EnableHystrix
+@EnableEurekaClient //@EnableHystrix
 public class ApiGatewayApplication {
 
     public static void main(String[] args) {

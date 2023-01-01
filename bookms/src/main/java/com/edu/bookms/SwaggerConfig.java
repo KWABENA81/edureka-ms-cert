@@ -17,6 +17,7 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -42,7 +43,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Book API").description("Book API")
-                //.licenseUrl("kwabena81@yahoo.com")
+                .contact(new Contact("Solomon S", "https://github.com/KWABENA81", "kwabena81@yahoo.com"))
                 .version("1.0").build();
     }
 
@@ -55,19 +56,19 @@ public class SwaggerConfig {
 
     @Bean
     public WebMvcEndpointHandlerMapping webEndpointServletHandlerMapping(
-            WebEndpointsSupplier webEndpointsSupplier, ServletEndpointsSupplier servletEndpointsSupplier,
-            ControllerEndpointsSupplier controllerEndpointsSupplier, EndpointMediaTypes endpointMediaTypes,
-            CorsEndpointProperties corsProperties, WebEndpointProperties webEndpointProperties, Environment environment) {
-        List<ExposableEndpoint<?>> allEndpoints = new ArrayList();
-        Collection<ExposableWebEndpoint> webEndpoints = webEndpointsSupplier.getEndpoints();
-        allEndpoints.addAll(webEndpoints);
-        allEndpoints.addAll(servletEndpointsSupplier.getEndpoints());
-        allEndpoints.addAll(controllerEndpointsSupplier.getEndpoints());
-        String basePath = webEndpointProperties.getBasePath();
+            WebEndpointsSupplier weps, ServletEndpointsSupplier seps,
+            ControllerEndpointsSupplier ceps, EndpointMediaTypes epmt,
+            CorsEndpointProperties corsProps, WebEndpointProperties wepp, Environment env) {
+        List<ExposableEndpoint<?>> exposableEndPoints = new ArrayList();
+        Collection<ExposableWebEndpoint> exposableWebEndpoints = weps.getEndpoints();
+        exposableEndPoints.addAll(exposableWebEndpoints);
+        exposableEndPoints.addAll(seps.getEndpoints());
+        exposableEndPoints.addAll(ceps.getEndpoints());
+        String basePath = wepp.getBasePath();
         EndpointMapping endpointMapping = new EndpointMapping(basePath);
-        boolean shouldRegisterLinksMapping = this.shouldRegisterLinksMapping(webEndpointProperties, environment, basePath);
-        return new WebMvcEndpointHandlerMapping(endpointMapping, webEndpoints, endpointMediaTypes,
-                corsProperties.toCorsConfiguration(), new EndpointLinksResolver(allEndpoints, basePath),
+        boolean shouldRegisterLinksMapping = this.shouldRegisterLinksMapping(wepp, env, basePath);
+        return new WebMvcEndpointHandlerMapping(endpointMapping, exposableWebEndpoints, epmt,
+                corsProps.toCorsConfiguration(), new EndpointLinksResolver(exposableEndPoints, basePath),
                 shouldRegisterLinksMapping, null);
     }
 }

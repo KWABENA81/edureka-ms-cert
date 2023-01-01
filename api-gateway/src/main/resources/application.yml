@@ -1,5 +1,5 @@
 server:
-  port: 9797
+  port: 8090
 
 spring:
   application:
@@ -7,17 +7,19 @@ spring:
 
   cloud:
     gateway:
-      discovery.locator:
-        enabled: false
-        lowerCaseServiceId: true
-        # http://localhost:8080/dummy-bookms/books -> http://localhost:8081/books
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+        # http://localhost:8090/dummy-bookms/books -> http://localhost:8097/books
+
       routes:
-        - id: BOOKMS
+        - id: bookms
           uri: lb://BOOKMS
           predicates:
-            - Path=/book/**       # /dummy-bookms/**
+            - Path= /bookms/**     # /dummy-bookms/**
           filters:
-            #- RewritePath= /dummy-bookms/(?<path>.*), /$\{path}
+            #- RewritePath:  /bookms/(?<path>.*), /$\{path}   # /dummy-bookms/(?<path>.*), /$\{path}
             - name: CircuitBreaker
               args:
                 name: book-microservice
@@ -26,14 +28,13 @@ spring:
         - id: issuerms
           uri: lb://ISSUERMS
           predicates:
-            - Path=/issuer/**     # /dummy-issuerms/**
+            - Path= /issuer/**     # /dummy-issuerms/**
           filters:
-            #- RewritePath= /dummy-issuerms/(?<path>.*), /$\{path}
+            #- RewritePath: /issuerms/(?<path>.*), /$\{path}    # /dummy-issuerms/(?<path>.*), /$\{path}
             - name: CircuitBreaker
               args:
                 name: issuer-microservice
                 fallbackuri: forward:/issuerFallBack
-
 
 eureka:
   client:

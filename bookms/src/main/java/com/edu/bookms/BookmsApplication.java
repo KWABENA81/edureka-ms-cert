@@ -24,7 +24,7 @@ public class BookmsApplication {
 
     @Bean
     @LoadBalanced
-    public RestTemplate restTemplate() {
+    public RestTemplate bookRestTemplate() {
         return new RestTemplate();
     }
 
