@@ -1,5 +1,5 @@
 server:
-  port: 8097
+  port: 8095
 
   error:
     whitelabel:
@@ -28,16 +28,11 @@ spring:
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: create
-
     show-sql: true
     open-in-view: true
     properties:
       hibernate:
         format_sql: true
-
-#spring:
-  devtools:
-    add-properties: false
 
   mvc:
     pathmatch:
@@ -55,6 +50,10 @@ spring:
         jwt:
           issuer-uri: https://idp.example.com/issuer
           jwk-set-uri: https://idp.example.com/.well-known/jwks.json
+
+#spring:
+  # devtools:
+  #   add-properties: false
 #  security:
 #    enabled: true
 #    user:

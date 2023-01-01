@@ -9,12 +9,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @SpringBootApplication
 //@EnableFeignClients
-//@EnableSwagger2
 @EnableWebMvc
 @EnableEurekaClient
 @EnableWebSecurity
@@ -26,7 +24,7 @@ public class BookmsApplication {
 
     @Bean
     @LoadBalanced
-    public RestTemplate restTemplate() {
+    public RestTemplate bookRestTemplate() {
         return new RestTemplate();
     }
 
