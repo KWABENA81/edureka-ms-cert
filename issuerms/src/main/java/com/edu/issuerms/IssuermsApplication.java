@@ -12,11 +12,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
-//@EnableFeignClients
-//@EnablePrometheusEndpoint
-//@EnableSpringBootMetricsCollector
-//@EnablePrometheusTiming
-//@EnableSwagger2
 @EnableWebMvc
 @EnableEurekaClient
 @EnableWebSecurity

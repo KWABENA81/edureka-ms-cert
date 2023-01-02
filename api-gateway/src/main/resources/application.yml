@@ -14,27 +14,31 @@ spring:
         # http://localhost:8090/dummy-bookms/books -> http://localhost:8097/books
 
       routes:
-        - id: bookms
-          uri: lb://BOOKMS
+        - id: book
+          uri: lb://book
           predicates:
-            - Path= /bookms/**     # /dummy-bookms/**
+          - Path=//book/**
+          - Path=/api/**,/api/{book}/**  #    /bookms/**     # /dummy-bookms/**
+          - Method=GET,POST,DELETE
           filters:
-            #- RewritePath:  /bookms/(?<path>.*), /$\{path}   # /dummy-bookms/(?<path>.*), /$\{path}
-            - name: CircuitBreaker
-              args:
-                name: book-microservice
-                fallbackuri: forward:/bookFallBack
+          - name: CircuitBreaker
+            args:
+              name: book-microservice
+              fallbackuri: forward:/bookFallBack
+          - RewritePath=/bookms/(?<path>.*), /$\{path}  # /dummy-bookms/(?<path>.*), /$\{path}
 
-        - id: issuerms
-          uri: lb://ISSUERMS
+        - id: issuer
+          uri: lb://issuer
           predicates:
-            - Path= /issuer/**     # /dummy-issuerms/**
+          - Path=//issuer/**
+          - Path=/api/**,/api/{issuer}/**  # /dummy-issuerms/**
+          - Method=GET,POST,DELETE
           filters:
-            #- RewritePath: /issuerms/(?<path>.*), /$\{path}    # /dummy-issuerms/(?<path>.*), /$\{path}
-            - name: CircuitBreaker
-              args:
-                name: issuer-microservice
-                fallbackuri: forward:/issuerFallBack
+          - name: CircuitBreaker
+            args:
+              name: issuer-microservice
+              fallbackuri: forward:/issuerFallBack
+          - RewritePath=/issuerms/(?<path>.*), /$\{path}  # /dummy-issuerms/(?<path>.*), /$\{path}
 
 eureka:
   client:
@@ -72,7 +76,10 @@ management:
     web:
       exposure:
         include: prometheus, health, info, mappings, env, auditevents, shutdown, *
-
+  metrics:
+    export:
+      prometheus:
+        enabled: true
 
 #hystrix:
 #  command:

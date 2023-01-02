@@ -12,7 +12,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 
 @SpringBootApplication
-//@EnableFeignClients
 @EnableWebMvc
 @EnableEurekaClient
 @EnableWebSecurity

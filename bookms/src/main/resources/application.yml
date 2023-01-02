@@ -88,8 +88,10 @@ eureka:
       #defaultZone: http://host.docker.internal:8761/eureka/
       #defaultZone: http://eureka-server:8761/eureka/
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    healthcheck:
+      enabled: true
   instance:
-    #preferIpAddress: true
+    preferIpAddress: true
     hostname: localhost
 
 # info endpoints configuration
@@ -121,7 +123,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: prometheus, health, info, mappings, env, auditevents  #, shutdown, *
+        include: prometheus, health, info, mappings, env, auditevents, shutdown, *
 
 
 
