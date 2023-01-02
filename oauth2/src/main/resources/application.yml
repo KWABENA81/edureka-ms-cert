@@ -10,7 +10,7 @@ spring:
 #      enabled: true
 #
   application:
-    name: OAUTH2
+    name: oauth2
     servlet:
       context-path: /oauth2
     use-forward-headers: false

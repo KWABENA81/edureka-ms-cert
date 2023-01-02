@@ -8,7 +8,7 @@ spring:
 eureka:
   instance:
     hostname: localhost
-    port: ${server.port}
+    port: ${server.port}S
   client:
     register-with-eureka: false
     fetch-registry: false

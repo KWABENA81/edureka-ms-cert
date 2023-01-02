@@ -1,0 +1,35 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - 'alert.rules'
+  # - "first.rules"
+  # - "second.files"
+
+# alert
+alerting:
+  alertmanagers:
+    - scheme: http
+      static_configs:
+        - targets: ['alertmanager:9093']
+
+scrape_configs:
+  - job_name: 'prometheus'
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['127.0.0.1:9095']
+
+  - job_name: 'BOOKMS'  #  'API-GATEWAY'    #  'spring-actuator'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['127.0.0.1:8090']
+
+  - job_name: 'ISSUERMS'  #  'API-GATEWAY'    #  'spring-actuator'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '127.0.0.1:8090' ]

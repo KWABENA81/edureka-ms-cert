@@ -7,7 +7,7 @@ server:
 
 spring:
   application:
-    name: BOOKMS
+    name: bookms
 
   h2:
     console:
@@ -95,12 +95,12 @@ eureka:
 # info endpoints configuration
 info:
   app:
-    name: @project.name@
-    description: @project.description@
-    version: @project.version@
-    encoding: @project.build.sourceEncoding@
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}
+    encoding: ${project.build.sourceEncoding}
     java:
-      version: @java.version@
+      version: ${java.version}
 
 # logging
 logging:
