@@ -29,8 +29,14 @@ scrape_configs:
     static_configs:
       - targets: ['127.0.0.1:9095']
 
-  - job_name: 'spring-actuator'
+  - job_name: 'BOOKMS'  #  'API-GATEWAY'    #  'spring-actuator'
     metrics_path: '/actuator/prometheus'
     scrape_interval: 5s
     static_configs:
-    - targets: ['']
+      - targets: ['127.0.0.1:8095']
+
+  - job_name: 'ISSUERMS'  #  'API-GATEWAY'    #  'spring-actuator'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '127.0.0.1:8099' ]
