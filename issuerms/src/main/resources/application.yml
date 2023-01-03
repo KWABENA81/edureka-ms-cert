@@ -59,15 +59,15 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
-    service-url:
+      #service-url:
       #defaultZone: http://localhost:8761/eureka/
       #defaultZone: http://host.docker.internal:8761/eureka/
       #defaultZone: http://eureka-server:8761/eureka/
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-    healthcheck:
-      enabled: true
+      #defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+      #healthcheck:
+    #enabled: true
   instance:
-    preferIpAddress: true
+    preferIpAddress: false
     hostname: localhost
 
 # info endpoints configuration

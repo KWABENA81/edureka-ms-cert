@@ -8,11 +8,11 @@ spring:
 eureka:
   instance:
     hostname: localhost
-    port: ${server.port}S
+    port: ${server.port}
   client:
     register-with-eureka: false
     fetch-registry: false
-    service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-    server:
-      waitTimeInMsWhenSyncEmpty: 0
+#    service-url:
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    enable-self-preservation: true
