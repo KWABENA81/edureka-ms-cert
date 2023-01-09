@@ -1,64 +1,55 @@
 server:
-  port: 8090
+  port: 8989
 
 spring:
   application:
-    name: api-gateway
-
+    name: API-GATEWAY
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: false
-          lower-case-service-id: true
-        # http://localhost:8090/dummy-bookms/books -> http://localhost:8097/books
-
+      discovery.locator:
+        enabled: false
+        lower-case-service-id: true
+        # http://localhost:8989/dummy-bookms/books -> http://localhost:8095/books
       routes:
-        - id: book
-          uri: lb://book
+        - id: bookms
+          uri: lb://BOOKMS
           predicates:
-          - Path=//book/**
-          - Path=/api/**,/api/{book}/**  #    /bookms/**     # /dummy-bookms/**
-          - Method=GET,POST,DELETE
+            - Path= /book/**            #- Path=/book/**  #    /bookms/**     # /dummy-bookms/**
+            - Method=GET,POST,DELETE
           filters:
-          - name: CircuitBreaker
-            args:
-              name: book-microservice
-              fallbackuri: forward:/bookFallBack
-          - RewritePath=/bookms/(?<path>.*), /$\{path}  # /dummy-bookms/(?<path>.*), /$\{path}
+            - name: CircuitBreaker
+              args:
+                name: bookms
+                fallbackuri: forward:/bookFallBack
+            - RewritePath=/book/(?<path>.*), /$\{path}  # /dummy-bookms/(?<path>.*), /$\{path}
 
-        - id: issuer
-          uri: lb://issuer
+        - id: issuerms
+          uri: lb://ISSUERMS
           predicates:
-          - Path=//issuer/**
-          - Path=/api/**,/api/{issuer}/**  # /dummy-issuerms/**
-          - Method=GET,POST,DELETE
+            - Path= /issuer/**           #- Path=/issuer/**  # /dummy-issuerms/**
+            - Method=GET,POST,DELETE
           filters:
-          - name: CircuitBreaker
-            args:
-              name: issuer-microservice
-              fallbackuri: forward:/issuerFallBack
-          - RewritePath=/issuerms/(?<path>.*), /$\{path}  # /dummy-issuerms/(?<path>.*), /$\{path}
+            - name: CircuitBreaker
+              args:
+                name: issuerms
+                fallbackuri: forward:/issuerFallBack
+            - RewritePath=/issuerms/(?<path>.*), /$\{path}  # /dummy-issuerms/(?<path>.*), /$\{path}
+#
 
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://localhost:8761/eureka
 
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
-    #service-url:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
       #defaultZone: http://localhost:8761/eureka/
       #defaultZone: http://host.docker.internal:8761/eureka/
       #defaultZone: http://eureka-server:8761/eureka/
-      #defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-#    healthcheck:
-#      enabled: true
-#  instance:
-#    preferIpAddress: false
-#    hostname: localhost
+    healthcheck:
+      enabled: true
+  instance:
+    hostname: localhost
 
 
 # info endpoints configuration
@@ -90,18 +81,20 @@ management:
   endpoints:
     web:
       exposure:
-        include: prometheus, health, info, mappings, env, auditevents, shutdown, *
+        include: hystrix.stream, prometheus, health, info, mappings, env, auditevents, shutdown, *
   metrics:
     export:
       prometheus:
         enabled: true
 
-#hystrix:
-#  command:
+hystrix:
+#  ommand:
 #    fallback:
 #      execution:
 #        isolation:
 #          thread:
 #            timeoutInMilliseconds: 5000
+  metrics:
+    enabled: true
 
 

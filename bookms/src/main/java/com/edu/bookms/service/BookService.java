@@ -9,16 +9,16 @@ import com.edu.bookms.repo.BookRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
- @Service
- @Slf4j
+@Service
+@Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookService implements IBookService {
@@ -27,11 +27,17 @@ public class BookService implements IBookService {
     private BookRepository bookRepository;
 
     @Autowired
-    private RestTemplate restTemplate;
+    private RestTemplate template;
 
     @Override
     public Collection<Book> findAll() {
         return bookRepository.findAll();
+    }
+
+    @Override
+    public List<Book> findByIssuerId(Long id) {
+        log.info(" BookService:  Book with id {} Deleted", id);
+        return bookRepository.findByIssuerId(id);
     }
 
     @Override
@@ -51,8 +57,8 @@ public class BookService implements IBookService {
         // if (optionalBook.isPresent()) {
         //     Book book = optionalBook.get();
         log.info(" BookService:  Book with id {} Deleted", id);
-            bookRepository.deleteById(id);           
-       // } 
+        bookRepository.deleteById(id);
+        // }
     }
 
     public Book save(Book book) {
@@ -64,16 +70,16 @@ public class BookService implements IBookService {
         Book book = request.getBook();
         Issuer issuer = request.getIssuer();
         issuer.setIsbn(book.getIsbn());
-        issuer.setNoOfCopies(book.getIssuedCopies());
+        issuer.setCopies(book.getIssuerId());
 
-        Issuer issuerResponse = restTemplate
-                .postForObject("http://ISSUERMS/issuer/issueBook/", issuer, Issuer.class);
-        String message = (issuerResponse.getIssuerStatus().equalsIgnoreCase("SUCCESS"))
-                ? "Issuer SUCCESSFULL" : "Invalid entry, FAILURE";
+        Issuer issuerResponse = template
+                .postForObject("http://ISSUERMS/issuer/doIssue", issuer, Issuer.class);
+        String message = (issuerResponse.getStatus().equalsIgnoreCase("SUCCESS"))
+                ? "Issuer SUCCESSFULLY" : "Invalid entry, FAILURE";
 
         bookRepository.save(book);
-        return new TransactionResponse(book, issuerResponse.getCustomerInfo(),
-                issuerResponse.getIssuerStatus(), issuerResponse.getIssuerTransactionId(), message);
+        return new TransactionResponse(book, issuerResponse.getCustInfo(),
+                issuerResponse.getStatus(), issuerResponse.getTransactionId(), message);
     }
 
 }

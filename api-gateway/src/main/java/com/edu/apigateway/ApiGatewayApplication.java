@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-//import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,7 +15,8 @@ import reactor.core.publisher.Mono;
 
 @Slf4j
 @SpringBootApplication
-@EnableEurekaClient //@EnableHystrix
+//@EnableEurekaClient
+@EnableHystrix
 public class ApiGatewayApplication {
 
     public static void main(String[] args) {
@@ -31,13 +32,17 @@ public class ApiGatewayApplication {
     @Bean
     public RouteLocator routeLocator(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route(r -> r.path("/api/**")
-                        .filters(f -> f.addRequestHeader("issuers", "books"))
-                        .uri("http://localhost:9195/oauth2/api"))
+                .route(r -> r.path("/book/**")
+                        .filters(f -> f.addRequestHeader("book", "book"))
+                        .uri("http://localhost:8095/bookms/"))
+                .route(r -> r.path("/issuer/**")
+                        .filters(f -> f.addRequestHeader("issuer", "issuer"))
+                        .uri("http://localhost:8099/issuer/"))//  .uri("http://localhost:9195/oauth2/api"))
                 .route(p -> p
                         .host("*.circuitbreaker.com")
                         .filters(f -> f.circuitBreaker(config -> config.setName("mycmd")
-                                .setFallbackUri("forward:/fallback")))
+                                .setFallbackUri("forward:/bookFallBack")))
+                        //.setFallbackUri("forward:/fallback")))
                         .uri("http://httpbin.org:80"))
                 .build();
     }
@@ -47,3 +52,16 @@ public class ApiGatewayApplication {
         return Mono.just("fallback");
     }
 }
+//    @Bean
+//    public RouteLocator myRoutes(RouteLocatorBuilder builder) {
+//        return builder.routes()
+//                .route(p -> p
+//                        .path("/get")
+//                        .filters(f -> f.addRequestHeader("Hello", "World"))
+//                        .uri("http://httpbin.org:80"))
+//                .route(p -> p
+//                        .host("*.circuitbreaker.com")
+//                        .filters(f -> f.circuitBreaker(config -> config.setName("mycmd")))
+//                        .uri("http://httpbin.org:80")).
+//                build();
+//    }

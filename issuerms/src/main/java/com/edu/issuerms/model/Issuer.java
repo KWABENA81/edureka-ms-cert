@@ -27,9 +27,12 @@ public class Issuer {
     private Integer noOfCopies;
 
     @Column(name = "issuer_status", length = 150)
-    private String issuerStatus;
+    private String issueStatus;
+
+//    @Column(name = "book_id",nullable =true)
+//    private Integer bookId;
 
     @Column(name = "issuer_transaction_id", length = 150)
-    private String issuerTransactionId;
+    private String issueTransactionId;
 
 }

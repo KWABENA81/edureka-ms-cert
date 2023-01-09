@@ -1,5 +1,5 @@
 server:
-  port: 8095
+  port: 8097
 
   error:
     whitelabel:
@@ -7,7 +7,7 @@ server:
 
 spring:
   application:
-    name: bookms
+    name: BOOKMS
 
   h2:
     console:
@@ -83,13 +83,13 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
-    #service-url:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
       #defaultZone: http://localhost:8761/eureka/
       #defaultZone: http://host.docker.internal:8761/eureka/
       #defaultZone: http://eureka-server:8761/eureka/
-      #defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-    #healthcheck:
-      #enabled: true
+    healthcheck:
+      enabled: true
   instance:
     preferIpAddress: false
     hostname: localhost

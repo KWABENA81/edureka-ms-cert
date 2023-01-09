@@ -1,5 +1,7 @@
 package com.edu.issuerms.api;
 
+import com.edu.issuerms.common.Book;
+import com.edu.issuerms.common.IssuerResponse;
 import com.edu.issuerms.model.Issuer;
 import com.edu.issuerms.service.IssuerService;
 import io.swagger.annotations.Api;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -19,12 +22,15 @@ import java.util.stream.Collectors;
 @RestController
 @CrossOrigin(origins = {"${app.security.cors.origin}"})
 @Api(value = "Issuer Class", protocols = "http")
-@RequestMapping("/api")
+@RequestMapping("/issuer")
 public class IssuerResource {
     @Autowired
     private IssuerService issuerService;
 
-    @ApiOperation(value = "Fetch all Issuers", response = Issuer.class, code = 200)
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @ApiOperation(value = "Fetch all Issuers", response = Issuer.class)
     @GetMapping(path = "/issuers")
     public ResponseEntity<List<Issuer>> issuers() {
         log.info("Start All Issuers retrieval");
@@ -32,8 +38,8 @@ public class IssuerResource {
         return ResponseEntity.ok(issuers);
     }
 
-    @ApiOperation(value = "Fetch Issue by Id", response = Issuer.class, code = 200)
-    @GetMapping(path = "/issuer/{id}")
+    @ApiOperation(value = "Fetch Issue by Id", response = Issuer.class)
+    @GetMapping(path = "/id/{id}")
     //@PrometheusTimeMethod(name = "issuer_resource_controller_issuer_by_id_duration_seconds", help = "Some helpful info here")
     public ResponseEntity<Issuer> issuerById(@PathVariable(value = "id") Long id) {
         Optional<Issuer> issuerOptional = issuerService.findById(id);
@@ -46,18 +52,47 @@ public class IssuerResource {
         }
     }
 
+    @ApiOperation(value = "Fetch Issue by Id", response = Issuer.class)
+    @GetMapping(path = "/issuers/{id}")
+//@PrometheusTimeMethod(name = "issuer_resource_controller_issuer_by_id_duration_seconds", help = "Some helpful info here")
+    public ResponseEntity<IssuerResponse> issuerBooksById(@PathVariable(value = "id") Long id) {
+        IssuerResponse issuerResponse = new IssuerResponse();
 
-    @ApiOperation(value = "Issue Book to IssuerCustomer", response = Issuer.class, code = 200)
-    @PostMapping(path = "/add")
-    public Issuer addIssuer(@RequestBody Issuer issuer) {
-        return issuerService.issueBook(issuer);
+        log.info("Issuer findById OK");
+        Optional<Issuer> optionalIssuer = issuerService.findById(id);
+        if (optionalIssuer.isPresent()) {
+            Issuer iser = optionalIssuer.get();
+            issuerResponse.setIssuer(iser);
+            issuerResponse.setCustomerInfo(iser.getCustomerInfo());
+
+            List<Book> issuerBooks = restTemplate.getForObject("http://BOOKMS/book/bookIssuer" + id, List.class);
+            issuerResponse.setBooks(issuerBooks);
+
+            return new ResponseEntity<>(issuerResponse, HttpStatus.OK);
+        } else {
+            log.error("FindById Issuer failed");
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @ApiOperation(value = "Delete / Cancel Book Issue", response = Issuer.class, code = 200)
+    @ApiOperation(value = "Issue  to Issuer Customer", response = Issuer.class)
+    @PostMapping(path = "/doIssue")
+    public ResponseEntity<Issuer> doIssue(@RequestBody Issuer issuer) {
+        Issuer savedIssuer = issuerService.doIssue(issuer);
+        return new ResponseEntity<>(savedIssuer, HttpStatus.OK);
+    }
+//
+//    @ApiOperation(value = "Issue  to Issuer Customer", response = Issuer.class, code = 200)
+//    @PostMapping(path = "/doIssue")
+//    public Issuer doIssue(@RequestBody Issuer issuer) {
+//        return issuerService.doIssue(issuer);
+//    }
+
+    @ApiOperation(value = "Delete / Cancel Book Issue", response = Issuer.class)
     @DeleteMapping(path = "/cancel/{id}")
     //@RequestMapping(value ="/cancel/{id}" , method = RequestMethod.DELETE)
     public void cancelIssue(@PathVariable(value = "id") Long id) {
-        log.info("Issuer with #id {} has cancelIssuer", id);
+        log.info("Issuer with #id {} has cancelIssue", id);
         boolean isRemoved = issuerService.delete(id);
         if (!isRemoved) {
             log.error("Issuer not found with id {}", id);

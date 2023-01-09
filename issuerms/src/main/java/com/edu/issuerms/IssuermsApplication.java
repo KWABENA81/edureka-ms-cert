@@ -23,7 +23,7 @@ public class IssuermsApplication {
 
     @Bean
     @LoadBalanced
-    public RestTemplate issuerRestTemplate() {
+    public RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
