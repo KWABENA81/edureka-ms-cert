@@ -43,17 +43,21 @@ public class IssuerService implements IIssuerService {
         return true;
     }
 
+    public String issueHandling(){
+        return new Random().nextBoolean() ? "SUCCESS" : "FAILURE";
+    }
 //    public List<Issuer> findIssuerByCustomer(String custid) {
 //        return null;//issuerRepository.findByCustId(custid);
 //    }
 
-    public String customerBookIssuing() {
-        return new Random().nextBoolean() ? "SUCCESS" : "FAILURE";
-    }
+//    public String customerBookIssuing() {
+//        return new Random().nextBoolean() ? "SUCCESS" : "FAILURE";
+//    }
 
-    public Issuer issueBook(Issuer issuer) {
-        issuer.setIssuerStatus(customerBookIssuing());
-        issuer.setIssuerTransactionId(UUID.randomUUID().toString().replace("-", "").toUpperCase());
+    public Issuer doIssue(Issuer issuer) {
+        issuer.setIssueStatus(issueHandling());
+       // issuer.setBookId(issuer.getBookId());
+        issuer.setIssueTransactionId(UUID.randomUUID().toString().replace("-", "").toUpperCase());
         issuer.setCustomerInfo("4164587787");
         issuer.setIsbn("DEFAULT");
         issuer.setNoOfCopies(102);

@@ -32,8 +32,8 @@ public class Book  {
     @Column(name = "published_date", nullable = false)
     private LocalDate publishedDate = LocalDate.now();
 
-    @Column(name = "issued_copies")
-    private Integer issuedCopies;
+    @Column(name = "issuer_id")
+    private Long issuerId;
 
     @Column(name = "total_copies")
     private Integer totalCopies;

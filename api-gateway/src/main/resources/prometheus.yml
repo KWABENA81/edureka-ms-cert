@@ -12,7 +12,7 @@ alerting:
   alertmanagers:
     - scheme: http
       static_configs:
-        - targets: ['alertmanager:9093']
+        - targets: ['127.0.0.1:9093']
 
 scrape_configs:
   - job_name: 'prometheus'
@@ -22,14 +22,20 @@ scrape_configs:
     static_configs:
       - targets: ['127.0.0.1:9095']
 
-  - job_name: 'BOOKMS'  #  'API-GATEWAY'    #  'spring-actuator'
-    metrics_path: '/actuator/prometheus'
+  - job_name: 'bookms'     #  'spring-actuator'
+    metrics_path: '/actuator/bookms'
     scrape_interval: 5s
     static_configs:
       - targets: ['127.0.0.1:8090']
 
-  - job_name: 'ISSUERMS'  #  'API-GATEWAY'    #  'spring-actuator'
-    metrics_path: '/actuator/prometheus'
+  - job_name: 'issuerms'   #  'spring-actuator'
+    metrics_path: '/actuator/issuerms'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '127.0.0.1:8090' ]
+
+  - job_name: 'api-gateway'   #  'spring-actuator'
+    metrics_path: '/actuator/api-gateway'
     scrape_interval: 5s
     static_configs:
       - targets: [ '127.0.0.1:8090' ]

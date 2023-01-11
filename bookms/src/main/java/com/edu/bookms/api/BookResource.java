@@ -4,6 +4,7 @@ import com.edu.bookms.common.TransactionRequest;
 import com.edu.bookms.common.TransactionResponse;
 import com.edu.bookms.model.Book;
 import com.edu.bookms.service.BookService;
+import io.prometheus.client.spring.web.PrometheusTimeMethod;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -24,14 +25,17 @@ import java.util.stream.Collectors;
 @RestController
 @CrossOrigin(origins = {"${app.security.cors.origin}"})
 @Api(value = "Books Class", protocols = "http")
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/book")
 public class BookResource {
 
-    @Autowired private RestTemplate restTemplate;
+    @Autowired
+    private RestTemplate restTemplate;
+
     @Autowired
     private BookService bookService;
 
     @ApiOperation(value = "Fetch all books", response = Book.class, code = 200)
+    @PrometheusTimeMethod(name = "ms_book_path_duration_seconds", help = "book microservice help")
     @GetMapping(path = "/books")
     public ResponseEntity<List<Book>> books() {
         log.info("Start All Books retrieval");
@@ -40,7 +44,7 @@ public class BookResource {
     }
 
     @ApiOperation(value = "Fetch book by Id", response = Book.class, code = 200)
-    @GetMapping("/book/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Book> booksById(@PathVariable(value = "id") Long id) {
         Optional<Book> bookOptional = bookService.findById(id);
         if (bookOptional.isPresent()) {
@@ -52,31 +56,37 @@ public class BookResource {
         }
     }
 
+    @ApiOperation(value = "Fetch books by issuer Id", response = Book.class )
+    @GetMapping("/issuer/{id}")
+    public ResponseEntity<List<Book>> fetchByIssuerId(@PathVariable(value = "id") Long id) {
+        List<Book> books = bookService.findByIssuerId(id);
+        return new ResponseEntity<>(books, HttpStatus.OK);
+    }
+
+
     @ApiOperation(value = "To create a book", response = Book.class, code = 200)
-    @PostMapping("/add")
-    public TransactionResponse issueBook(@RequestBody TransactionRequest transactionRequest) {
-        return bookService.saveBook(transactionRequest);
+    @PostMapping("/create")
+    public TransactionResponse create(@RequestBody TransactionRequest request) {
+        return bookService.saveBook(request);
     }
 
     @ApiOperation(value = "Update existing book", response = Book.class, code = 200)
     @PutMapping("/edit/{id}")
     public Book editBook(@RequestBody Book nbook, @PathVariable(value = "id") Long id) {
-        return bookService.findById(id)
-                .map(bk -> {
-                    bk.setIsbn(nbook.getIsbn());
-                    bk.setTitle(nbook.getTitle());
-                    bk.setAuthor(nbook.getAuthor());
-                    bk.setTotalCopies(nbook.getTotalCopies());
-                    bk.setIssuedCopies(nbook.getIssuedCopies());
-                    bk.setPublishedDate(nbook.getPublishedDate());
+        return bookService.findById(id).map(bk -> {
+            bk.setIsbn(nbook.getIsbn());
+            bk.setTitle(nbook.getTitle());
+            bk.setAuthor(nbook.getAuthor());
+            bk.setTotalCopies(nbook.getTotalCopies());
+            bk.setIssuerId(nbook.getIssuerId());
+            bk.setPublishedDate(nbook.getPublishedDate());
 
-                    return bookService.save(bk);
-                })
-                .orElseGet(() -> {
-                    nbook.setId(id);
-                    bookService.save(nbook);
-                    return bookService.save(nbook);
-                });
+            return bookService.save(bk);
+        }).orElseGet(() -> {
+            nbook.setId(id);
+            bookService.save(nbook);
+            return bookService.save(nbook);
+        });
     }
 
     @ApiOperation(value = "Delete a book", response = Book.class, code = 200)

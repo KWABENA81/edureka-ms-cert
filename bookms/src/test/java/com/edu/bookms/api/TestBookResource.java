@@ -60,7 +60,7 @@ public class TestBookResource {
     private static void printBookData(Book book) {
         System.out.println("ID: " + book.getId() + "\tISBN: " + book.getIsbn() + "\tAUTHOR: " + book.getAuthor()
                 + "\n\tTITLE: " + book.getTitle() + "\tTOTAL COPIES: " + book.getTotalCopies() +
-                "\n\t" + book.getIssuedCopies() + "\tPublished Date:  " + book.getPublishedDate());
+                "\n\t" + book.getIssuerId() + "\tPublished Date:  " + book.getPublishedDate());
     }
 
     private static void testGetAllBooks() {
