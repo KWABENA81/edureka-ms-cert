@@ -29,23 +29,23 @@ public class ApiGatewayApplication {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public RouteLocator routeLocator(RouteLocatorBuilder builder) {
-        return builder.routes()
-                .route(r -> r.path("/book/**")
-                        .filters(f -> f.addRequestHeader("book", "book"))
-                        .uri("http://localhost:8095/bookms/"))
-                .route(r -> r.path("/issuer/**")
-                        .filters(f -> f.addRequestHeader("issuer", "issuer"))
-                        .uri("http://localhost:8099/issuer/"))//  .uri("http://localhost:9195/oauth2/api"))
-                .route(p -> p
-                        .host("*.circuitbreaker.com")
-                        .filters(f -> f.circuitBreaker(config -> config.setName("mycmd")
-                                .setFallbackUri("forward:/bookFallBack")))
-                        //.setFallbackUri("forward:/fallback")))
-                        .uri("http://httpbin.org:80"))
-                .build();
-    }
+//    @Bean
+//    public RouteLocator routeLocator(RouteLocatorBuilder builder) {
+//        return builder.routes()
+//                .route(r -> r.path("/book/**")
+//                        .filters(f -> f.addRequestHeader("book", "book"))
+//                        .uri("http://localhost:8095/bookms/"))
+//                .route(r -> r.path("/issuer/**")
+//                        .filters(f -> f.addRequestHeader("issuer", "issuer"))
+//                        .uri("http://localhost:8099/issuer/"))//  .uri("http://localhost:9195/oauth2/api"))
+//                .route(p -> p
+//                        .host("*.circuitbreaker.com")
+//                        .filters(f -> f.circuitBreaker(config -> config.setName("mycmd")
+//                                .setFallbackUri("forward:/bookFallBack")))
+//                        //.setFallbackUri("forward:/fallback")))
+//                        .uri("http://httpbin.org:80"))
+//                .build();
+//    }
 
     @RequestMapping("/fallback")
     public Mono<String> fallback() {

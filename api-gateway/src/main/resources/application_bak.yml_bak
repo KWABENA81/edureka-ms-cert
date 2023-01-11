@@ -9,18 +9,33 @@ spring:
       discovery.locator:
         enabled: false
         lower-case-service-id: true
+        # http://localhost:8989/dummy-bookms/books -> http://localhost:8095/books
       routes:
-      - id: book
+      - id: bookms
         uri: lb://BOOKMS
         predicates:
-        - Path=/book/**
+        - Path= /book/**            #- Path=/book/**  #    /bookms/**     # /dummy-bookms/**
         - Method=GET,POST,DELETE
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: bookms
+#                fallbackuri: forward:/bookFallBack
+#            - RewritePath=/book/(?<path>.*), /$\{path}  # /dummy-bookms/(?<path>.*), /$\{path}
 
-      - id: issuer
+      - id: issuerms
         uri: lb://ISSUERMS
         predicates:
-        - Path=/issuer/**
+        - Path= /issuer/**           #- Path=/issuer/**  # /dummy-issuerms/**
         - Method=GET,POST,DELETE
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: issuerms
+#                fallbackuri: forward:/issuerFallBack
+#            - RewritePath=/issuerms/(?<path>.*), /$\{path}  # /dummy-issuerms/(?<path>.*), /$\{path}
+#
+
 
 eureka:
   client:
@@ -28,10 +43,14 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+      #defaultZone: http://localhost:8761/eureka/
+      #defaultZone: http://host.docker.internal:8761/eureka/
+      #defaultZone: http://eureka-server:8761/eureka/
     healthcheck:
       enabled: true
   instance:
     hostname: localhost
+
 
 # info endpoints configuration
 info:
@@ -68,6 +87,14 @@ management:
       prometheus:
         enabled: true
 
-
+hystrix:
+#  ommand:
+#    fallback:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 5000
+  metrics:
+    enabled: true
 
 

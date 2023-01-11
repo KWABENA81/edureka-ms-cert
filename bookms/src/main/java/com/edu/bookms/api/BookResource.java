@@ -56,21 +56,13 @@ public class BookResource {
         }
     }
 
-    @ApiOperation(value = "Fetch books by issuer Id", response = Book.class, code = 200)
-    @GetMapping("/bookIssuer/{id}")
+    @ApiOperation(value = "Fetch books by issuer Id", response = Book.class )
+    @GetMapping("/issuer/{id}")
     public ResponseEntity<List<Book>> fetchByIssuerId(@PathVariable(value = "id") Long id) {
         List<Book> books = bookService.findByIssuerId(id);
-        System.out.println(books);
-        log.error(" books.isEmpty()"+books.isEmpty());
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
-//@ApiOperation(value = "To create a book", response = Book.class, code = 200)
-//@PostMapping("/create")
-//public ResponseEntity<Book> createBook(@RequestBody Book book) {
-//    Book savedBook = bookService.saveBook(book);
-//    return new ResponseEntity<>(savedBook, HttpStatus.OK);
-//}
 
     @ApiOperation(value = "To create a book", response = Book.class, code = 200)
     @PostMapping("/create")

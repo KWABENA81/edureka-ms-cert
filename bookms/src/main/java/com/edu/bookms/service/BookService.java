@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -35,8 +36,8 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public List<Book> findByIssuerId(Long id) {
-        log.info(" BookService:  Book with id {} Deleted", id);
+    public List<Book> findByIssuerId(final Long id) {
+        log.info(" Fetch Books by Issuer id {} ", id);
         return bookRepository.findByIssuerId(id);
     }
 
@@ -70,7 +71,7 @@ public class BookService implements IBookService {
         Book book = request.getBook();
         Issuer issuer = request.getIssuer();
         issuer.setIsbn(book.getIsbn());
-        issuer.setCopies(book.getIssuerId());
+        issuer.setCopies(book.getTotalCopies());
 
         Issuer issuerResponse = template
                 .postForObject("http://ISSUERMS/issuer/doIssue", issuer, Issuer.class);

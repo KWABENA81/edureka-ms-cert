@@ -33,7 +33,7 @@ public class Book  {
     private LocalDate publishedDate = LocalDate.now();
 
     @Column(name = "issuer_id")
-    private Integer issuerId;
+    private Long issuerId;
 
     @Column(name = "total_copies")
     private Integer totalCopies;

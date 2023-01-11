@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -56,7 +58,7 @@ public class IssuerResource {
     @GetMapping(path = "/issuers/{id}")
 //@PrometheusTimeMethod(name = "issuer_resource_controller_issuer_by_id_duration_seconds", help = "Some helpful info here")
     public ResponseEntity<IssuerResponse> issuerBooksById(@PathVariable(value = "id") Long id) {
-        IssuerResponse issuerResponse = new IssuerResponse();
+             IssuerResponse issuerResponse = new IssuerResponse();
 
         log.info("Issuer findById OK");
         Optional<Issuer> optionalIssuer = issuerService.findById(id);
@@ -65,10 +67,17 @@ public class IssuerResource {
             issuerResponse.setIssuer(iser);
             issuerResponse.setCustomerInfo(iser.getCustomerInfo());
 
-            List<Book> issuerBooks = restTemplate.getForObject("http://BOOKMS/book/bookIssuer" + id, List.class);
-            issuerResponse.setBooks(issuerBooks);
+            List<Book> issuerBooks = null;
+            try {
+                issuerBooks = restTemplate.getForObject(URLEncoder
+                        .encode("http://BOOKMS/book/issuers/" + id, "UTF-8"), List.class);
+                issuerResponse.setBooks(issuerBooks);
 
-            return new ResponseEntity<>(issuerResponse, HttpStatus.OK);
+                return new ResponseEntity<>(issuerResponse, HttpStatus.OK);
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
+
         } else {
             log.error("FindById Issuer failed");
             return ResponseEntity.notFound().build();
@@ -81,12 +90,7 @@ public class IssuerResource {
         Issuer savedIssuer = issuerService.doIssue(issuer);
         return new ResponseEntity<>(savedIssuer, HttpStatus.OK);
     }
-//
-//    @ApiOperation(value = "Issue  to Issuer Customer", response = Issuer.class, code = 200)
-//    @PostMapping(path = "/doIssue")
-//    public Issuer doIssue(@RequestBody Issuer issuer) {
-//        return issuerService.doIssue(issuer);
-//    }
+
 
     @ApiOperation(value = "Delete / Cancel Book Issue", response = Issuer.class)
     @DeleteMapping(path = "/cancel/{id}")
