@@ -67,7 +67,7 @@ eureka:
     healthcheck:
       enabled: true
   instance:
-    preferIpAddress: false
+    prefer-ip-address: false
     hostname: localhost
 
 

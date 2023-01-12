@@ -4,29 +4,38 @@ server:
 spring:
   application:
     name: API-GATEWAY
+  ##  API GATEWAY CONFIGURATION
   cloud:
     gateway:
-      discovery.locator:
-        enabled: false
-        lower-case-service-id: true
+#      discovery.locator:
+#        enabled: false
+#        lower-case-service-id: true
       routes:
-      - id: book
-        uri: lb://BOOKMS
-        predicates:
-        - Path=/book/**
-        - Method=GET,POST,DELETE
-        filters:
-        - RewritePath= /dummy-bookms/(?<path>.*), /$\{path}
-      # - id: book
-      #   uri: http://localhost:8099
-      #   predicates:
-      #   - Path=/book/**
+        - id: BOOKMS
+          uri: lb://BOOKMS       #uri: http://localhost:8097/       #
+          predicates:
+            - Path=/book/**
+            #- Method=GET,POST,DELETE
+          filters:
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: bookms
+                fallbackuri: forward:/bookFallBack
+            - RewritePath=/book/(?<path>.*), /$\{path}  # /dummy-bookms/(?<path>.*), /$\{path}
 
-      - id: issuer
-        uri: lb://ISSUERMS
-        predicates:
-        - Path=/issuer/**
-        - Method=GET,POST,DELETE
+        - id: ISSUERMS
+          uri: lb://ISSUERMS     #uri: http://localhost:8099/      #
+          predicates:
+            - Path=/issuer/**
+            #- Method=GET,POST,DELETE
+          filters:
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: issuerms
+                fallbackuri: forward:/issuerFallBack
+            - RewritePath=/issuer/(?<path>.*), /$\{path}  # /dummy-issuerms/(?<path>.*), /$\{path}
 # ------------------------------------------------------------------
 
      # http://localhost:8080/dummy-studentms/students -> http://localhost:8081/students
@@ -44,21 +53,20 @@ spring:
       #       - Path= /dummy-studentms-client/**
       #     filters:
       #       - RewritePath= /dummy-studentms-client/(?<path>.*), /$\{path}
-
 # -------------------------------------------TEMP
-  autoconfigure:
-    exclude:
-     - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
-     - org.springframework.boot.actuate.autoconfigure.ManagementSecurityAutoConfiguration
-     - org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration
-     - org.springframework.boot.actuate.autoconfigure.security.reactive.ReactiveManagementWebSecurityAutoConfiguration
+  # autoconfigure:
+  #   exclude:
+  #    - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  #    - org.springframework.boot.actuate.autoconfigure.ManagementSecurityAutoConfiguration
+  #    - org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration
+  #    - org.springframework.boot.actuate.autoconfigure.security.reactive.ReactiveManagementWebSecurityAutoConfiguration
 # ---------------------------------------------------
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+      defaultZone: http://localhost:8761/eureka    #${EUREKA_URI:http://localhost:8761/eureka}
     healthcheck:
       enabled: true
   instance:
