@@ -15,13 +15,44 @@ spring:
         predicates:
         - Path=/book/**
         - Method=GET,POST,DELETE
+        filters:
+        - RewritePath= /dummy-bookms/(?<path>.*), /$\{path}
+      # - id: book
+      #   uri: http://localhost:8099
+      #   predicates:
+      #   - Path=/book/**
 
       - id: issuer
         uri: lb://ISSUERMS
         predicates:
         - Path=/issuer/**
         - Method=GET,POST,DELETE
+# ------------------------------------------------------------------
 
+     # http://localhost:8080/dummy-studentms/students -> http://localhost:8081/students
+      # routes:
+      #   - id: studentmsid
+      #     uri: lb://STUDENTMS
+      #     predicates:
+      #       - Path= /dummy-studentms/**
+      #     filters:
+      #       - RewritePath= /dummy-studentms/(?<path>.*), /$\{path}
+
+      #   - id: studentmsclientid
+      #     uri: lb://STUDENTMS-CLIENT
+      #     predicates:
+      #       - Path= /dummy-studentms-client/**
+      #     filters:
+      #       - RewritePath= /dummy-studentms-client/(?<path>.*), /$\{path}
+
+# -------------------------------------------TEMP
+  autoconfigure:
+    exclude:
+     - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+     - org.springframework.boot.actuate.autoconfigure.ManagementSecurityAutoConfiguration
+     - org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration
+     - org.springframework.boot.actuate.autoconfigure.security.reactive.ReactiveManagementWebSecurityAutoConfiguration
+# ---------------------------------------------------
 eureka:
   client:
     register-with-eureka: true
@@ -49,20 +80,21 @@ logging:
     path: tmp/log
 
 management:
-  endpoint:
-    shutdown:
-      enabled: true
-    metrics:
-      enabled: true
-    prometheus:
-      enabled: true
-    health:
-      show-details: always
+  # endpoint:
+  #   shutdown:
+  #     enabled: true
+  #   metrics:
+  #     enabled: true
+  #   prometheus:
+  #     enabled: true
+  #   health:
+  #     show-details: always
 
   endpoints:
     web:
       exposure:
-        include: hystrix.stream, prometheus, health, info, mappings, env, auditevents, shutdown, *
+        include: "*"  
+        # hystrix.stream, prometheus, health, info, mappings, env, auditevents, shutdown, *
   metrics:
     export:
       prometheus:
