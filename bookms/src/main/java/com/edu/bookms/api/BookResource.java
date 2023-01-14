@@ -34,6 +34,11 @@ public class BookResource {
     @Autowired
     private BookService bookService;
 
+    @GetMapping("/intro")
+    public String bookIntro() {
+        return "This is the Book microservice resource";
+    }
+
     @ApiOperation(value = "Fetch all books", response = Book.class, code = 200)
     @PrometheusTimeMethod(name = "ms_book_path_duration_seconds", help = "book microservice help")
     @GetMapping(path = "/books")
@@ -56,7 +61,7 @@ public class BookResource {
         }
     }
 
-    @ApiOperation(value = "Fetch books by issuer Id", response = Book.class )
+    @ApiOperation(value = "Fetch books by issuer Id", response = Book.class)
     @GetMapping("/issuer/{id}")
     public ResponseEntity<List<Book>> fetchByIssuerId(@PathVariable(value = "id") Long id) {
         List<Book> books = bookService.findByIssuerId(id);

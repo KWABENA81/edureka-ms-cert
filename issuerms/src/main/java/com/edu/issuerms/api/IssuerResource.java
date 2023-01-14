@@ -32,6 +32,11 @@ public class IssuerResource {
     @Autowired
     private RestTemplate restTemplate;
 
+    @GetMapping("/intro")
+    public String issuerIntro() {
+        return "This is the Issuer microservice resource";
+    }
+
     @ApiOperation(value = "Fetch all Issuers", response = Issuer.class)
     @GetMapping(path = "/issuers")
     public ResponseEntity<List<Issuer>> issuers() {
@@ -58,7 +63,7 @@ public class IssuerResource {
     @GetMapping(path = "/issuers/{id}")
 //@PrometheusTimeMethod(name = "issuer_resource_controller_issuer_by_id_duration_seconds", help = "Some helpful info here")
     public ResponseEntity<IssuerResponse> issuerBooksById(@PathVariable(value = "id") Long id) {
-             IssuerResponse issuerResponse = new IssuerResponse();
+        IssuerResponse issuerResponse = new IssuerResponse();
 
         log.info("Issuer findById OK");
         Optional<Issuer> optionalIssuer = issuerService.findById(id);
@@ -70,7 +75,8 @@ public class IssuerResource {
             List<Book> issuerBooks = null;
             try {
                 issuerBooks = restTemplate.getForObject(URLEncoder
-                        .encode("http://BOOKMS/book/issuers/" + id, "UTF-8"), List.class);
+                       //   .encode("http://localhost:8097/book/issuer/" + id, "UTF-8"), List.class);
+                        .encode("http://BOOKMS/book/issuer/" + id, "UTF-8"), List.class);
                 issuerResponse.setBooks(issuerBooks);
 
                 return new ResponseEntity<>(issuerResponse, HttpStatus.OK);

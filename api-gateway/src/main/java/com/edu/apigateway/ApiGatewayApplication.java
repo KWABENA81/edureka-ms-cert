@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,8 +14,7 @@ import reactor.core.publisher.Mono;
 
 @Slf4j
 @SpringBootApplication
-//@EnableEurekaClient
-@EnableHystrix
+@EnableEurekaClient
 public class ApiGatewayApplication {
 
     public static void main(String[] args) {

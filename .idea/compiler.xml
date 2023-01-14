@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
         <module name="issuerms" />
-        <module name="hystrix" />
         <module name="bookms" />
         <module name="oauth2" />
         <module name="eureka-server" />
