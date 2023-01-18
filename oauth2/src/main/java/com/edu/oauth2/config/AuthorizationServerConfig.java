@@ -36,9 +36,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .withClient("client")
                 .secret("secret")
                 .authorizedGrantTypes("client_credentials", "password", "refresh_token")
-                .scopes("Create", "Read", "Update", "Delete", "Auth:Logout")
-                .accessTokenValiditySeconds(36000)
-                .refreshTokenValiditySeconds(86400);
+                .scopes("read");
+             //   .scopes("Create", "Read", "Update", "Delete", "Auth:Logout")
+//                .accessTokenValiditySeconds(36000)
+//                .refreshTokenValiditySeconds(86400);
     }
 
     @Override

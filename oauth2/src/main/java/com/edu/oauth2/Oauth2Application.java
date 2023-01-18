@@ -7,9 +7,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 @SpringBootApplication
-@EnableWebSecurity
+//@EnableWebSecurity
 public class Oauth2Application {
-
     public static void main(String[] args) {
         SpringApplication.run(Oauth2Application.class, args);
     }
