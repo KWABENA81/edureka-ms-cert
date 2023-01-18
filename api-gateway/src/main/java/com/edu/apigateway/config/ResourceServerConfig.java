@@ -25,7 +25,7 @@ public class ResourceServerConfig {
     }
 
     @Bean
-    public ReactiveJwtDecoder reactiveDecoder() {
+    public ReactiveJwtDecoder reactiveJwtDecoder() {
         byte[] keyInBytes = "123456789012345678901234567890AB".getBytes();
         SecretKeySpec secretKeySpec = new SecretKeySpec(keyInBytes, 0, keyInBytes.length, "AES");
         return NimbusReactiveJwtDecoder.withSecretKey(secretKeySpec).build();
