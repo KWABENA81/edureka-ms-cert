@@ -53,8 +53,8 @@ spring:
           jwk-set-uri: https://idp.example.com/.well-known/jwks.json
 
 #spring:
-  # devtools:
-  #   add-properties: false
+#   devtools:
+#   add-properties: false
 #  security:
 #    enabled: true
 #    user:
@@ -65,7 +65,6 @@ spring:
 #      resource-server:
 #        jwt:
 #          issuer-uri: "https://api.asgardeo.io/t/imeshaorg/oauth2/token"
-
 
 #    enabled: false
 ##spring:
@@ -112,22 +111,20 @@ logging:
 
 management:
   endpoint:
-    shutdown:
-      enabled: true
-    metrics:
-      enabled: true
-    prometheus:
-      enabled: true
+#    shutdown:
+#      enabled: true
+#    metrics:
+#      enabled: true
+#    prometheus:
+#      enabled: true
     health:
       show-details: always
       
   endpoints:
     web:
       exposure:
-        include: prometheus, health, info, mappings, env, auditevents, shutdown, *
-
-
-
+        include: "*"
+        #  prometheus, health, info, mappings, env, auditevents, shutdown, *
 
 
   # Actuator endpoints for Circuit Breaker
@@ -140,5 +137,4 @@ management:
   #  ignored: /**
   #  basic:
   #    enabled: false
-
   ####

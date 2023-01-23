@@ -4,7 +4,7 @@ import com.edu.bookms.common.TransactionRequest;
 import com.edu.bookms.common.TransactionResponse;
 import com.edu.bookms.model.Book;
 import com.edu.bookms.service.BookService;
-import io.prometheus.client.spring.web.PrometheusTimeMethod;
+//import io.prometheus.client.spring.web.PrometheusTimeMethod;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +40,7 @@ public class BookResource {
     }
 
     @ApiOperation(value = "Fetch all books", response = Book.class, code = 200)
-    @PrometheusTimeMethod(name = "ms_book_path_duration_seconds", help = "book microservice help")
+    //@PrometheusTimeMethod(name = "ms_book_path_duration_seconds", help = "book microservice help")
     @GetMapping(path = "/books")
     public ResponseEntity<List<Book>> books() {
         log.info("Start All Books retrieval");

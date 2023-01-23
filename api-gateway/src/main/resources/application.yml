@@ -88,25 +88,25 @@ logging:
     path: tmp/log
 
 management:
-  # endpoint:
+  endpoint:
   #   shutdown:
   #     enabled: true
   #   metrics:
   #     enabled: true
   #   prometheus:
   #     enabled: true
-  #   health:
-  #     show-details: always
+    health:
+      show-details: always
 
   endpoints:
     web:
       exposure:
         include: "*"  
         # hystrix.stream, prometheus, health, info, mappings, env, auditevents, shutdown, *
-  metrics:
-    export:
-      prometheus:
-        enabled: true
+#  metrics:
+#    export:
+#      prometheus:
+#        enabled: true
 
 
 
