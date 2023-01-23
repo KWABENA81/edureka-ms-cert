@@ -88,17 +88,18 @@ logging:
 
 management:
   endpoint:
-    shutdown:
-      enabled: true
-    metrics:
-      enabled: true
-    prometheus:
-      enabled: true
+#    shutdown:
+#      enabled: true
+#    metrics:
+#      enabled: true
+#    prometheus:
+#      enabled: true
     health:
       show-details: always
       
   endpoints:
     web:
       exposure:
-        include: prometheus, health, info, mappings, env, auditevents, shutdown, *
+        include: "*"
+        # prometheus, health, info, mappings, env, auditevents, shutdown, *
 

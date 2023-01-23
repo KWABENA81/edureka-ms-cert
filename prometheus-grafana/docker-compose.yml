@@ -7,7 +7,7 @@ volumes:
   graf-data: {
     #external: true
   }
-  # jmx-data: {
+#  jmx-data: {
   #   external: true
   # }
 
@@ -16,8 +16,8 @@ services:
     container_name: prometheus
     image: prom/prometheus 
     volumes:
-      - "./prometheus:/etc/prometheus"
-      - prom-data:/var/lib/prometheus
+      - ./prometheus:/etc/prometheus
+      - "prom-data:/var/lib/prometheus"
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
     command:
@@ -31,7 +31,7 @@ services:
     ports:
       - "9095:9095"
     networks:
-      - mservice_networks
+      - microservice_net
   #  --- # restart: unless-stopped
 
   grafana:
@@ -41,7 +41,7 @@ services:
       GF_INSTALL_PLUGINS: 'grafana-clock-panel,grafana-simple-json-datasource'
     volumes:
       - graf-data:/var/lib/grafana    
-      - "./grafana/provisioning/:/etc/grafana/provisioning/"
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
     env_file:
@@ -49,7 +49,7 @@ services:
     ports:
       - "3033:3000"
     networks:
-      - mservice_networks
+      - microservice_net
     # ----restart: unless-stopped
     depends_on:
       - prometheus
@@ -66,8 +66,9 @@ services:
 
 
 networks:
-  mservice_networks:
-    external: true
-    driver: bridge
+  microservice_net:
+    name: custom_network
+    # external: true
+    # driver: bridge
 
 
