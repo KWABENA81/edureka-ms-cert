@@ -72,3 +72,76 @@ $ curl -v -X POST -u client:secret 'http://localhost:9195/oauth/token?grant_type
     "scope":"read",
     "jti":"AHxUQ5oIZASLeciQuCuJW6Dsbsc"
 }
+------Jan 24
+------
+$ curl -v -X POST -u client:secret 'http://localhost:9195/oauth/token?grant_type=password&username=john&password=passw0rd123&scope=read'
+*   Trying 127.0.0.1:9195...
+* Connected to localhost (127.0.0.1) port 9195 (#0)
+* Server auth using Basic with user 'client'
+> POST /oauth/token?grant_type=password&username=john&password=passw0rd123&scope=read HTTP/1.1
+> Host: localhost:9195
+> Authorization: Basic Y2xpZW50OnNlY3JldA==
+> User-Agent: curl/7.81.0
+> Accept: */*
+>
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200
+< Cache-Control: no-store
+< Pragma: no-cache
+< X-Content-Type-Options: nosniff
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: DENY
+< Content-Type: application/json;charset=UTF-8
+< Transfer-Encoding: chunked
+< Date: Mon, 23 Jan 2023 14:48:36 GMT
+<
+* Connection #0 to host localhost left intact
+{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQ1Mjg1MTYsInVzZXJfbmFtZSI6ImpvaG4iLCJhdXRob3JpdGllcyI6WyJyZWFkIl0sImp0aSI6IlhFaXN6ak1zd1RDTHV2dnFfQ084bTdfS0FkbyIsImNsaWVudF9pZCI6ImNsaWVudCIsInNjb3BlIjpbInJlYWQiXX0.i6x-uYqMh3hodYW3Ln4aqgu8AzUTOilmQasICvdr1zI","token_type":"bearer","refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJqb2huIiwic2NvcGUiOlsicmVhZCJdLCJhdGkiOiJYRWlzempNc3dUQ0x1dnZxX0NPOG03X0tBZG8iLCJleHAiOjE2NzcwNzczMTYsImF1dGhvcml0aWVzIjpbInJlYWQiXSwianRpIjoidXg2MXM0OF8tT19jQWRtTF8yYUVGYS13UENBIiwiY2xpZW50X2lkIjoiY2xpZW50In0.ReO-g22CgO8qDqXOrupayMQ3_9CO9dk6HcXl8NRuWXo","expires_in":43199,"scope":"read","jti":"XEiszjMswTCLuvvq_CO8m7_KAdo"}sask@sask-VirtualBox:~/Documents/edureka/stu-mgnt-microservice/eureka-server
+$ curl -v -X POST -u client:secret 'http://localhost:9195/oauth/token?grant_type=password&username=john&password=passw0rd123&scope=read'
+*   Trying 127.0.0.1:9195...
+* Connected to localhost (127.0.0.1) port 9195 (#0)
+* Server auth using Basic with user 'client'
+> POST /oauth/token?grant_type=password&username=john&password=passw0rd123&scope=read HTTP/1.1
+> Host: localhost:9195
+> Authorization: Basic Y2xpZW50OnNlY3JldA==
+> User-Agent: curl/7.81.0
+> Accept: */*
+>
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200
+< Cache-Control: no-store
+< Pragma: no-cache
+< X-Content-Type-Options: nosniff
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: DENY
+< Content-Type: application/json;charset=UTF-8
+< Transfer-Encoding: chunked
+< Date: Mon, 23 Jan 2023 14:49:08 GMT
+<
+* Connection #0 to host localhost left intact
+{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQ1Mjg1NDgsInVzZXJfbmFtZSI6ImpvaG4iLCJhdXRob3JpdGllcyI6WyJyZWFkIl0sImp0aSI6IkRPNERVUmtKQUh0UjhjcXhqX2FPVGM5LW5tayIsImNsaWVudF9pZCI6ImNsaWVudCIsInNjb3BlIjpbInJlYWQiXX0.9X2WwHxdrnNVyC5f620shWkKCCtsAPq9Ub1TkqDKhh4","token_type":"bearer","refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJqb2huIiwic2NvcGUiOlsicmVhZCJdLCJhdGkiOiJETzREVVJrSkFIdFI4Y3F4al9hT1RjOS1ubWsiLCJleHAiOjE2NzcwNzczNDgsImF1dGhvcml0aWVzIjpbInJlYWQiXSwianRpIjoia1RIV2VscU5lV0dhU0tlNUlJT1FlVVB4Z01VIiwiY2xpZW50X2lkIjoiY2xpZW50In0.D-Nug59q5Hsjctye_oU12sBKljbzN0xKD5-5SPjTFfY","expires_in":43199,"scope":"read","jti":"DO4DURkJAHtR8cqxj_aOTc9-nmk"}sask@sask-VirtualBox:~/Documents/edureka/stu-mgnt-microservice/eureka-server
+$ curl -v -X POST -u client:secret 'http://localhost:9195/oauth/token?grant_type=password&username=john&password=passw0rd123&scope=read'
+*   Trying 127.0.0.1:9195...
+* Connected to localhost (127.0.0.1) port 9195 (#0)
+* Server auth using Basic with user 'client'
+> POST /oauth/token?grant_type=password&username=john&password=passw0rd123&scope=read HTTP/1.1
+> Host: localhost:9195
+> Authorization: Basic Y2xpZW50OnNlY3JldA==
+> User-Agent: curl/7.81.0
+> Accept: */*
+>
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200
+< Cache-Control: no-store
+< Pragma: no-cache
+< X-Content-Type-Options: nosniff
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: DENY
+< Content-Type: application/json;charset=UTF-8
+< Transfer-Encoding: chunked
+< Date: Mon, 23 Jan 2023 14:49:35 GMT
+<
+* Connection #0 to host localhost left intact
+{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQ1Mjg1NzUsInVzZXJfbmFtZSI6ImpvaG4iLCJhdXRob3JpdGllcyI6WyJyZWFkIl0sImp0aSI6IkJMMGZEaWJ2RkRvdzFTcS1vMU5YQWhXUUpVOCIsImNsaWVudF9pZCI6ImNsaWVudCIsInNjb3BlIjpbInJlYWQiXX0.5m4Y1GDWhtcp-l37CeZZTcXmBZjwX70zcqabO_UCJ-E","token_type":"bearer","refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJqb2huIiwic2NvcGUiOlsicmVhZCJdLCJhdGkiOiJCTDBmRGlidkZEb3cxU3EtbzFOWEFoV1FKVTgiLCJleHAiOjE2NzcwNzczNzUsImF1dGhvcml0aWVzIjpbInJlYWQiXSwianRpIjoiOG52dDM0OXVOcndhQWVMVXVNX094d0xJTlFrIiwiY2xpZW50X2lkIjoiY2xpZW50In0.GDORt9KZzgKoHmV7wlL88F3Tz2F9xhileknrQyRLCcc","expires_in":43199,"scope":"read","jti":"BL0fDibvFDow1Sq-o1NXAhWQJU8"}sask@sask-VirtualBox:~/Documents/edureka/stu-mgnt-microservice/eureka-server
+$
+
