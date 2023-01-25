@@ -9,10 +9,12 @@ ARG VERSION=0.0.1
 
 VOLUME /tmp
 
-ADD target/bookms-${VERSION}-SNAPSHOT.jar app.jar
+ADD target/bookms-${VERSION}-SNAPSHOT.jar book-app.jar
 
 #
-RUN sh -c 'touch /app.jar'
+RUN sh -c 'touch /book-app.jar'
+
+EXPOSE 8097
 
 #   entrypoint
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "/book-app.jar"]

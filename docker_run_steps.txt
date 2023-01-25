@@ -1,0 +1,9 @@
+cd ~/Documents/edureka/edureka-ms-cert/eureka-server
+docker build -t kwabena81/eureka-image:0.1 .
+
+cd ~/Documents/edureka/edureka-ms-cert/api-gateway
+docker build -t kwabena81/api-gateway-image:0.1 .
+
+cd ~/Documents/edureka/edureka-ms-cert
+docker-compose up
+

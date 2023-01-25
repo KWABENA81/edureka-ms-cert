@@ -9,10 +9,12 @@ ARG VERSION=0.0.1
 
 VOLUME /tmp
 
-ADD target/issuerms-${VERSION}-SNAPSHOT.jar app.jar
+ADD target/issuerms-${VERSION}-SNAPSHOT.jar issuer-app.jar
 
 #
-RUN sh -c 'touch /app.jar'
+RUN sh -c 'touch /issuer-app.jar'
+
+EXPOSE 8099
 
 #   entrypoint
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "/issuer-app.jar"]

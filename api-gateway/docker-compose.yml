@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  eureka-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '9797:9797'
+    expose:
+      - '9797'
+    networks:
+      - ms_networks
+      
+
+networks:
+  ms_networks:
+    name: ms_networks

@@ -9,10 +9,12 @@ ARG VERSION=0.0.1
 
 VOLUME /tmp
 
-ADD target/eureka-server-${VERSION}-SNAPSHOT.jar app.jar
+ADD target/eureka-server-${VERSION}-SNAPSHOT.jar eureka-server-app.jar
 
 #
-RUN sh -c 'touch /app.jar'
+RUN sh -c 'touch /eureka-server-app.jar'
+
+EXPOSE 8761
 
 #   entrypoint
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "/eureka-server-app.jar"]
