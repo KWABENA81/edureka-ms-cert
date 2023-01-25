@@ -9,10 +9,12 @@ ARG VERSION=0.0.1
 
 VOLUME /tmp
 
-ADD target/oauth2-${VERSION}-SNAPSHOT.jar app.jar
+ADD target/oauth2-${VERSION}-SNAPSHOT.jar oauth-app.jar
 
 #
-RUN sh -c 'touch /app.jar'
+RUN sh -c 'touch /oauth-app.jar'
+
+EXPOSE 9195
 
 #   entrypoint
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "/oauth-app.jar"]

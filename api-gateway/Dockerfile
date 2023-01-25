@@ -9,10 +9,13 @@ ARG VERSION=0.0.1
 
 VOLUME /tmp
 
-ADD target/api-gateway-${VERSION}-SNAPSHOT.jar app.jar
+ADD target/api-gateway-${VERSION}-SNAPSHOT.jar gateway-app.jar
 
 #
-RUN sh -c 'touch /app.jar'
+RUN sh -c 'touch /gateway-app.jar'
+
+EXPOSE 9797
 
 #   entrypoint
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "/gateway-app.jar"]
+
