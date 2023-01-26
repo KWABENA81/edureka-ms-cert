@@ -65,22 +65,24 @@ public class IssuerResource {
     public ResponseEntity<IssuerResponse> issuerBooksById(@PathVariable(value = "id") Long id) {
         IssuerResponse issuerResponse = new IssuerResponse();
 
-        log.info("Issuer findById OK");
+        log.info("Issuer issuerBooksById OK");
         Optional<Issuer> optionalIssuer = issuerService.findById(id);
         if (optionalIssuer.isPresent()) {
-            Issuer iser = optionalIssuer.get();
-            issuerResponse.setIssuer(iser);
-            issuerResponse.setCustomerInfo(iser.getCustomerInfo());
-
+            Issuer isuance = optionalIssuer.get();
+            issuerResponse.setIssuer(isuance);
+            issuerResponse.setCustomerInfo(isuance.getCustomerInfo());
+            log.info("74 Books issuerBooksById OK {}",isuance);
             List<Book> issuerBooks = null;
             try {
+                log.info("74-77 Books issuerBooksById OK {}",issuerBooks);
                 issuerBooks = restTemplate.getForObject(URLEncoder
-                       //   .encode("http://localhost:8097/book/issuer/" + id, "UTF-8"), List.class);
-                        .encode("http://BOOKMS/book/issuer/" + id, "UTF-8"), List.class);
+                          .encode("http://localhost:8097/book/issuer/" + id, "UTF-8"), List.class);
+                       // .encode("http://BOOKMS/book/issuer/" + id, "UTF-8"), List.class);
                 issuerResponse.setBooks(issuerBooks);
-
+                log.info("82 Books issuerBooksById OK {}",issuerBooks);
                 return new ResponseEntity<>(issuerResponse, HttpStatus.OK);
             } catch (UnsupportedEncodingException e) {
+                log.error("85 UnsupportedEncodingException {}",e.getMessage());
                 throw new RuntimeException(e);
             }
 

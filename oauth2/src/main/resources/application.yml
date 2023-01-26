@@ -53,10 +53,12 @@ eureka:
     preferIpAddress: false
     hostname: localhost
 
+# logging:
 logging:
   level:
     org.springframework.security: DEBUG
-
+  file:
+    path: /tmp/log
 
 
 
