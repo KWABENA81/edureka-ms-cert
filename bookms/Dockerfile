@@ -2,6 +2,10 @@
 #
 FROM openjdk:11
 
+ENV JAVA_VERSION=11.0.16
+
+ENV JAVA_HOME=/usr/local/openjdk-11
+
 #   label image
 LABEL Description="Bookms Server" Version="0.0.1"
 

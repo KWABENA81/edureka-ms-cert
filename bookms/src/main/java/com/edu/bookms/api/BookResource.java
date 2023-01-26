@@ -64,7 +64,9 @@ public class BookResource {
     @ApiOperation(value = "Fetch books by issuer Id", response = Book.class)
     @GetMapping("/issuer/{id}")
     public ResponseEntity<List<Book>> fetchByIssuerId(@PathVariable(value = "id") Long id) {
+        log.info("67 Books fetchByIssuerId OK");
         List<Book> books = bookService.findByIssuerId(id);
+        log.info("69 Books fetchByIssuerId OK {}",books);
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 

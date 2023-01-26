@@ -107,7 +107,7 @@ info:
 # logging
 logging:
   file:
-    path: tmp/log
+    path: /tmp/log
 
 management:
   endpoint:

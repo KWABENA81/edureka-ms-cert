@@ -1,5 +1,5 @@
 server:
-  port: 9797
+  port: 8181
 
 spring:
   application:
@@ -36,25 +36,7 @@ spring:
                 name: issuerms
                 fallbackuri: forward:/issuerFallBack
             - RewritePath=/issuer/(?<path>.*), /$\{path}  # /dummy-issuerms/(?<path>.*), /$\{path}
-# ------------------------------------------------------------------
 
-     # http://localhost:8080/dummy-studentms/students -> http://localhost:8081/students
-      # routes:
-      #   - id: studentmsid
-      #     uri: lb://STUDENTMS
-      #     predicates:
-      #       - Path= /dummy-studentms/**
-      #     filters:
-      #       - RewritePath= /dummy-studentms/(?<path>.*), /$\{path}
-
-      #   - id: studentmsclientid
-      #     uri: lb://STUDENTMS-CLIENT
-      #     predicates:
-      #       - Path= /dummy-studentms-client/**
-      #     filters:
-      #       - RewritePath= /dummy-studentms-client/(?<path>.*), /$\{path}
-
-# ---------------------------------------------------
 eureka:
   client:
     register-with-eureka: true
@@ -79,7 +61,7 @@ info:
 # logging
 logging:
   file:
-    path: tmp/log
+    path: /tmp/log
 
 management:
   endpoint:

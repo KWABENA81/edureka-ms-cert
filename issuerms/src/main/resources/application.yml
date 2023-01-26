@@ -70,9 +70,9 @@ eureka:
       #defaultZone: http://eureka-server:8761/eureka/
     healthcheck:
       enabled: true
-  instance:
-    prefer-ip-address: false
-    hostname: localhost
+#  instance:
+#    prefer-ip-address: false
+#    hostname: localhost
 
 
 # info endpoints configuration
@@ -88,7 +88,7 @@ info:
 # logging
 logging:
   file:
-    path: tmp/log
+    path: /tmp/log
 
 management:
   endpoint:
