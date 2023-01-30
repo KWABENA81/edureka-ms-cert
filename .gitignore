@@ -6,3 +6,4 @@ log/
 .git
 tmp/*
 .dockerignore
+.txt

@@ -46,9 +46,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .authorizeRequests().anyRequest().permitAll();
-//                .authorizeRequests().anyRequest().authenticated().and()
-//                .formLogin().loginPage("/login").permitAll();
+ //               .authorizeRequests().anyRequest().permitAll();
+                .authorizeRequests().anyRequest().authenticated().and()
+                .formLogin().loginPage("/login").permitAll();
     }
 }
 //    @Override         DUPLICATE CODE??
@@ -63,11 +63,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .password("edureka@")
 //                .roles("ADMIN");
 //    }
-
 //    @Bean
 //    public UserDetailsService users() {
 //        return new InMemoryUserDetailsManager(user, admin);  }
-
 //    @Autowired         DUPLICATE CODE??
 //    public void globalUserDetails(final AuthenticationManagerBuilder builder) throws Exception {
 //        builder.inMemoryAuthentication()
@@ -75,7 +73,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and()
 //                .withUser("admin").password("admin").roles("ADMIN");
 //    }
-
 //    @Bean
 //    public PasswordEncoder passwordEncoder() {
 //        return NoOpPasswordEncoder.getInstance();

@@ -145,3 +145,85 @@ $ curl -v -X POST -u client:secret 'http://localhost:9195/oauth/token?grant_type
 {"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQ1Mjg1NzUsInVzZXJfbmFtZSI6ImpvaG4iLCJhdXRob3JpdGllcyI6WyJyZWFkIl0sImp0aSI6IkJMMGZEaWJ2RkRvdzFTcS1vMU5YQWhXUUpVOCIsImNsaWVudF9pZCI6ImNsaWVudCIsInNjb3BlIjpbInJlYWQiXX0.5m4Y1GDWhtcp-l37CeZZTcXmBZjwX70zcqabO_UCJ-E","token_type":"bearer","refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJqb2huIiwic2NvcGUiOlsicmVhZCJdLCJhdGkiOiJCTDBmRGlidkZEb3cxU3EtbzFOWEFoV1FKVTgiLCJleHAiOjE2NzcwNzczNzUsImF1dGhvcml0aWVzIjpbInJlYWQiXSwianRpIjoiOG52dDM0OXVOcndhQWVMVXVNX094d0xJTlFrIiwiY2xpZW50X2lkIjoiY2xpZW50In0.GDORt9KZzgKoHmV7wlL88F3Tz2F9xhileknrQyRLCcc","expires_in":43199,"scope":"read","jti":"BL0fDibvFDow1Sq-o1NXAhWQJU8"}sask@sask-VirtualBox:~/Documents/edureka/stu-mgnt-microservice/eureka-server
 $
 
+===========================
+curl -H "Content-Type: application/json" http://localhost:8080/<your-context-root>/login -d 'username=yourusername&password=yourpassword'
+
+curl -H "Content-Type: application/json" http://localhost:8181/gateway/welcome
+curl --request GET http://localhost:8181/gateway/welcome
+
+$ curl -v http://localhost:8181/gateway/welcome
+*   Trying 127.0.0.1:8181...
+* Connected to localhost (127.0.0.1) port 8181 (#0)
+> GET /gateway/welcome HTTP/1.1
+> Host: localhost:8181
+> User-Agent: curl/7.81.0
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 401 Unauthorized
+< WWW-Authenticate: Bearer
+< Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+< Pragma: no-cache
+< Expires: 0
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: DENY
+< X-XSS-Protection: 1 ; mode=block
+< Referrer-Policy: no-referrer
+< content-length: 0
+< 
+* Connection #0 to host localhost left intact
+
+================================== Jan 28, 2023 ==========================
+
+$ curl -v -X POST -u client:secret 'http://localhost:9195/oauth/token?grant_type=password&username=john&password=passw0rd123&scope=read'
+*   Trying 127.0.0.1:9195...
+* Connected to localhost (127.0.0.1) port 9195 (#0)
+* Server auth using Basic with user 'client'
+> POST /oauth/token?grant_type=password&username=john&password=passw0rd123&scope=read HTTP/1.1
+> Host: localhost:9195
+> Authorization: Basic Y2xpZW50OnNlY3JldA==
+> User-Agent: curl/7.81.0
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 
+< Cache-Control: no-store
+< Pragma: no-cache
+< X-Content-Type-Options: nosniff
+< X-XSS-Protection: 1; mode=block
+< X-Frame-Options: DENY
+< Content-Type: application/json;charset=UTF-8
+< Transfer-Encoding: chunked
+< Date: Sun, 29 Jan 2023 01:08:24 GMT
+< 
+* Connection #0 to host localhost left intact
+{
+    "access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQ5OTc3MDQsInVzZXJfbmFtZSI6ImpvaG4iLCJhdXRob3JpdGllcyI6WyJyZWFkIl0sImp0aSI6ImVHc251ajJhR3QwY09jQzlZQlNESGRUbVN5VSIsImNsaWVudF9pZCI6ImNsaWVudCIsInNjb3BlIjpbInJlYWQiXX0.Vkz_cziuoJnzouEAsAq3mmY9gtQQm4129hXpYF0PBOs",
+    "token_type":"bearer",
+    "refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJqb2huIiwic2NvcGUiOlsicmVhZCJdLCJhdGkiOiJlR3NudWoyYUd0MGNPY0M5WUJTREhkVG1TeVUiLCJleHAiOjE2Nzc1NDY1MDQsImF1dGhvcml0aWVzIjpbInJlYWQiXSwianRpIjoiQlZaSjVCOHlOSl9WNjJpblhIajhNclg4SGpZIiwiY2xpZW50X2lkIjoiY2xpZW50In0.np7a-LSfBLiKrPI0XJfaUuPk03M7zAEbGZcXVdRkfQE",
+    "expires_in":43199,
+    "scope":"read",
+    "jti":"eGsnuj2aGt0cOcC9YBSDHdTmSyU"
+}
+---------------------------
+
+curl --location --request POST 'http://localhost:9195/oauth/token?grant_type=password&username=john&password=passw0rd123&scope=read' --header 'content-Type: application/json' --header 'Authorization: Basic Y2xpZW50OnNlY3JldA==' --data-raw ''
+
+
+$ curl --location --request POST 'http://localhost:9195/oauth/token?grant_type=password&username=john&password=passw0rd123&scope=read' --header 'content-Type: application/json' --header 'Authorization: Basic Y2xpZW50OnNlY3JldA==' --data-raw '' > oauth.txt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   698    0   698    0     0  40011      0 --:--:-- --:--:-- --:--:-- 41058
+$ cat oauth.txt 
+{
+    "access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQ5OTc4OTYsInVzZXJfbmFtZSI6ImpvaG4iLCJhdXRob3JpdGllcyI6WyJyZWFkIl0sImp0aSI6Im5fNmsxaGZQaVZkZWhQUldpZlI3U0p5Z1dGVSIsImNsaWVudF9pZCI6ImNsaWVudCIsInNjb3BlIjpbInJlYWQiXX0.Iv3u9AwIT0Dla8OvKAq9onz_8DdzHWKoAiBZXgA0OZA",
+    "token_type":"bearer",
+    "refresh_token":
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJqb2huIiwic2NvcGUiOlsicmVhZCJdLCJhdGkiOiJuXzZrMWhmUGlWZGVoUFJXaWZSN1NKeWdXRlUiLCJleHAiOjE2Nzc1NDY2OTYsImF1dGhvcml0aWVzIjpbInJlYWQiXSwianRpIjoicV9sdkxQY2pjWkJpVmpEZFB2em9Qem10ZnE4IiwiY2xpZW50X2lkIjoiY2xpZW50In0.PFPxZke6LaPZ5nvODSJLq7P8_cfS2G1wLu6Qz5JIWbs",
+    "expires_in":43199,
+    "scope":"read",
+    "jti":"n_6k1hfPiVdehPRWifR7SJygWFU"
+}
+
+===
+curl --location --request GET 'localhost:8097/book/books' --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQ5OTc4OTYsInVzZXJfbmFtZSI6ImpvaG4iLCJhdXRob3JpdGllcyI6WyJyZWFkIl0sImp0aSI6Im5fNmsxaGZQaVZkZWhQUldpZlI3U0p5Z1dGVSIsImNsaWVudF9pZCI6ImNsaWVudCIsInNjb3BlIjpbInJlYWQiXX0.Iv3u9AwIT0Dla8OvKAq9onz_8DdzHWKoAiBZXgA0OZA'
