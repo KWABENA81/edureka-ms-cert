@@ -16,4 +16,9 @@ public class FallbackController {
     public Mono<String> issuerMicroServiceFallBack() {
         return Mono.just("Issuer Service is taking too long to respond.  Please try again later.");
     }
+
+    @RequestMapping("/oauthFallBack")
+    public Mono<String> oauthMicroServiceFallBack() {
+        return Mono.just("Oauth Service is taking too long to respond.  Please try again later.");
+    }
 }
